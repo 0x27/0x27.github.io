@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>0x27 Finger Discount</title>
+    <description>The adventures and exploits of a student/developer as they explore wonderous new lands of unsanitized inputs, programming languages,  and Computer Science 3.
+</description>
+    <link>http://0x27.me/</link>
+    <atom:link href="http://0x27.me/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 15 Oct 2014 19:45:17 +0100</pubDate>
+    <lastBuildDate>Wed, 15 Oct 2014 19:45:17 +0100</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Hello World!</title>
+        <description>&lt;p&gt;So I am attempting this blogging thing, using Jekyll. I guess this is the hello world post :)&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python2&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#coding: utf-8&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Hello world!&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I will be publishing most of my code over at my &lt;a href=&quot;https://github.com/0x27&quot;&gt;Github&lt;/a&gt;, so do check it out :)&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 15 Oct 2014 18:54:34 +0100</pubDate>
+        <link>http://0x27.me/blog/beginnings/2014/10/15/Hello-World.html</link>
+        <guid isPermaLink="true">http://0x27.me/blog/beginnings/2014/10/15/Hello-World.html</guid>
+        
+        
+        <category>blog</category>
+        
+        <category>beginnings</category>
+        
+      </item>
+    
+  </channel>
+</rss>
