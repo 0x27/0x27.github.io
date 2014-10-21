@@ -6,8 +6,8 @@
 </description>
     <link>http://0x27.me/</link>
     <atom:link href="http://0x27.me/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 21 Oct 2014 21:30:23 +0100</pubDate>
-    <lastBuildDate>Tue, 21 Oct 2014 21:30:23 +0100</lastBuildDate>
+    <pubDate>Tue, 21 Oct 2014 21:32:54 +0100</pubDate>
+    <lastBuildDate>Tue, 21 Oct 2014 21:32:54 +0100</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -52,27 +52,9 @@ Welcome to the twilight zone...
 
 </description>
         <pubDate>Tue, 21 Oct 2014 19:00:00 +0100</pubDate>
-        <link>http://0x27.me/ssh/2-factor/authentication/security/python/pam/twilio/api/sms/2014/10/21/Python-PAM-Twilio-2fa.html</link>
-        <guid isPermaLink="true">http://0x27.me/ssh/2-factor/authentication/security/python/pam/twilio/api/sms/2014/10/21/Python-PAM-Twilio-2fa.html</guid>
+        <link>http://0x27.me/2014/10/21/Python-PAM-Twilio-2fa.html</link>
+        <guid isPermaLink="true">http://0x27.me/2014/10/21/Python-PAM-Twilio-2fa.html</guid>
         
-        
-        <category>ssh</category>
-        
-        <category>2-factor</category>
-        
-        <category>authentication</category>
-        
-        <category>security</category>
-        
-        <category>python</category>
-        
-        <category>pam</category>
-        
-        <category>twilio</category>
-        
-        <category>api</category>
-        
-        <category>sms</category>
         
       </item>
     
@@ -88,13 +70,9 @@ Welcome to the twilight zone...
 
 </description>
         <pubDate>Wed, 15 Oct 2014 18:54:34 +0100</pubDate>
-        <link>http://0x27.me/blog/beginnings/2014/10/15/Hello-World.html</link>
-        <guid isPermaLink="true">http://0x27.me/blog/beginnings/2014/10/15/Hello-World.html</guid>
+        <link>http://0x27.me/2014/10/15/Hello-World.html</link>
+        <guid isPermaLink="true">http://0x27.me/2014/10/15/Hello-World.html</guid>
         
-        
-        <category>blog</category>
-        
-        <category>beginnings</category>
         
       </item>
     

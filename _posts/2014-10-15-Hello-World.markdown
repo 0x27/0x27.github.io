@@ -2,7 +2,6 @@
 layout: post
 title:  "Hello World!"
 date:   2014-10-15 17:54:34
-categories: blog beginnings
 ---
 So I am attempting this blogging thing, using Jekyll. I guess this is the hello world post :)
 
