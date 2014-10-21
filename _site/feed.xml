@@ -6,9 +6,75 @@
 </description>
     <link>http://0x27.me/</link>
     <atom:link href="http://0x27.me/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 15 Oct 2014 19:45:17 +0100</pubDate>
-    <lastBuildDate>Wed, 15 Oct 2014 19:45:17 +0100</lastBuildDate>
+    <pubDate>Tue, 21 Oct 2014 21:30:23 +0100</pubDate>
+    <lastBuildDate>Tue, 21 Oct 2014 21:30:23 +0100</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>2-Factor Auth for SSH using Twilio API and Python-PAM</title>
+        <description>&lt;p&gt;So, first real post here. Inspired by a &lt;a href=&quot;http://www.chokepoint.net/2013/12/simple-ssh-2-factor-pam-python-module.html&quot;&gt;post&lt;/a&gt; over at the &lt;a href=&quot;http://www.chokepoint.net/&quot;&gt;Chokepoint blog&lt;/a&gt;, and after recently doing some reading up on the &lt;a href=&quot;https://www.twilio.com&quot;&gt;Twilio&lt;/a&gt; &lt;a href=&quot;https://www.twilio.com/docs/python/install&quot;&gt;API&lt;/a&gt;, I decided it would be fun to expand their little script to use Twilio instead of &lt;a href=&quot;http://www.txtdrop.com&quot;&gt;TxtDrop&lt;/a&gt; for the simple reason that Twilio supports a lot more countries (including Ireland and the UK, where I currently reside) than TxtDrop, and so I could have an excuse to mess with Twilio, as I need to get to grips with its API for another project currently under development. I also wanted 2 factor auth for the server I use for IRC.&lt;/p&gt;
+
+&lt;p&gt;First off, we have to understand how the Python API for Twilio works for sending a SMS. Below is the example code from their documentation. Please note, I could not for the fucking life of me get this to work with a free Twilio account, and resorted to paying cash fucking money for one in the end.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Download the twilio-python library from http://twilio.com/docs/libraries&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;twilio.rest&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TwilioRestClient&lt;/span&gt;
+ 
+&lt;span class=&quot;c&quot;&gt;# Find these values at https://twilio.com/user/account&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;account_sid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;ACXXXXXXXXXXXXXXXXX&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;auth_token&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;YYYYYYYYYYYYYYYYYY&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TwilioRestClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account_sid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;auth_token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ 
+&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;+12316851234&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;+15555555555&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                                     &lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Hello there!&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So, now we know how to send the text message. We modify this example and shove it into a function that accepts a destination phone number and the one time PIN we wish to send.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;send_sms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TwilioRestClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account_sid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;auth_token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;+15555555555&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Literally 2 lines of code. We can add some error handling or whatever later if we are so inclined. I am not, at this time, bothered. Now, to modify StampAuth to use our magical Twilio stuff, we simply ditch the SMS sending class, modify the function calls to the SMS sendy bit, and Bob’s yer uncle - it works.&lt;/p&gt;
+
+&lt;p&gt;Now, we have not yet looked at the PAM parts of the code… Simply because it took me a while to figure them out!&lt;/p&gt;
+
+&lt;p&gt;As you may notice, the “pam” module is never imported. This &lt;em&gt;seems&lt;/em&gt; to be because in the configuration, pam_python.so is explicitly called to handle the python script. This is not something I have seen before, so I decided against mucking about with it too much… I will eventually study python-pam in more detail in a future post when I figure it out a bit better!&lt;/p&gt;
+
+&lt;p&gt;Without further ado… Here is an example run of our little module :)&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh -ltest unsanitized
+Enter one &lt;span class=&quot;nb&quot;&gt;time &lt;/span&gt;PIN: 
+Password:
+
+Welcome to the twilight zone...
+&lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;@unsanitized:~&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can download the fork using Twilio on &lt;a href=&quot;https://github.com/0x27/twilightpam&quot;&gt;the github page&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 21 Oct 2014 19:00:00 +0100</pubDate>
+        <link>http://0x27.me/ssh/2-factor/authentication/security/python/pam/twilio/api/sms/2014/10/21/Python-PAM-Twilio-2fa.html</link>
+        <guid isPermaLink="true">http://0x27.me/ssh/2-factor/authentication/security/python/pam/twilio/api/sms/2014/10/21/Python-PAM-Twilio-2fa.html</guid>
+        
+        
+        <category>ssh</category>
+        
+        <category>2-factor</category>
+        
+        <category>authentication</category>
+        
+        <category>security</category>
+        
+        <category>python</category>
+        
+        <category>pam</category>
+        
+        <category>twilio</category>
+        
+        <category>api</category>
+        
+        <category>sms</category>
+        
+      </item>
     
       <item>
         <title>Hello World!</title>
