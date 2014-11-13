@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>About</title>
+    <title>Proposal for a Key Revokation Procedure for Tor Hidden Services</title>
     <meta name="description" content="The adventures and exploits of a student/developer as they explore wonderous new lands of unsanitized inputs, programming languages,  and Computer Science 3.
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="http://0x27.me/about/">
+    <link rel="canonical" href="http://0x27.me/2014/11/13/Tor-HS-Key-Revokation-Proposal.html">
 </head>
 
 
@@ -61,13 +61,21 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">About</h1>
+    <h1 class="post-title">Proposal for a Key Revokation Procedure for Tor Hidden Services</h1>
+    <p class="post-meta">Nov 13, 2014</p>
   </header>
 
   <article class="post-content">
-    <p>Hi, I am 0x27, a student/developer who is using this blog/site thing to document various adventures in the wonderful world of software development, vulnerability research, reverse engineering, and various other computer science related (and otherwise) hobbies/interests.</p>
+    <p>Warning in advance: I am not a proper cryptographer, and I am not a tor developer. I am just some gobshite on the internet who is going to make some probably incredibly stupid statements in this short posting that might be of interest to people far more intelligent than myself. Also, this is not exactly providing much in the lines of “implementation”, it is merely chucking an idea out there for the clever fuckers to figure out the details of ;)</p>
 
-<p>Hopefully you find some of the things here interesting :)</p>
+<p>So in light of the recent <a href="http://www.wired.com/2014/11/operation-onymous-dark-web-arrests/">FBI/Europol takedowns of a number of tor hidden services</a>, and subsequent <a href="http://www.dailydot.com/politics/doxbin-dark-net/">reseizure of the doxbin hidden service</a> by persons unknown (nachash was <a href="https://twitter.com/loldoxbin/status/531907010158419968">quite adamant</a> that it was not him, and that he had given the keys to an interested party), it suddenly came to mind that there might be a need for a key revokation mechanism for tor hidden services - similar to the <a href="https://security.ias.edu/how-revoke-gnupgpgp-signature-key">revokation method in use with PGP</a>. Except, obviously, better. </p>
+
+<p>Anyways. So onions are stored in a <a href="https://www.torproject.org/docs/hidden-services.html.en">distributed hash table</a>, which, as the name suggests, is distributed. The hidden service domain is calculated from the public key of a private-public keypair. From what I can understand (and I may be very, very fucking wrong), the DHT basically holds the public key identifiers for each hidden service. Much like a keyserver in the PGP mechanism.</p>
+
+<p>So, what I am proposing is an extension to the DHT protocol to not only allow publishing a hidden service descriptor to the DHT, but a secure revokation mechanism (based on the private key) that would allow a hidden service operator to “kill” a hidden service. Furthermore, a mechanism wherin prior to killing a HS, perhaps the ability to create new keys, sign with the old ones, pop it in the DHT, wait for a consensus mechanism to accept the new service, and then kill the old keys. This would, probably, be needlessly complex, however, so it would likely be best to just go with the revokation mechanism.</p>
+
+<p>Uses for the revokation mechanism would include killing a HS post-compromise (by LE, Government, or malicious hackers) to defend the users of it from impersonation, amongst other things. </p>
+
 
   </article>
 
