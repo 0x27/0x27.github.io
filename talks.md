@@ -16,11 +16,14 @@ This was [another panel][lolpanel], wherin [Cal Leeming][sleepycal], [Mustafa Al
 
 However, here is the sole [photo of the thing][lolphoto]
 
-# RoyalCourt
+# Royal Court, London, 2014 - The Big Idea: In Conversation with LulzSec.
+[This][royalcourt] was a really, really odd one. Basically, myself and my fellow former cyberterrorists were on stage - [video][royalcourtvid] - chatting about the crimes we did, our motivations, and all that jazz, as part of a play called [Teh Internet is Serious Business][tehinternet], which, by the way, was fucking amazing. Really unsure how to explain this particular talky thingy, but it was highly amusing.
 
-# link and description of steelcon 2014 talk
+# SteelCon 2014 - Process Injection with Python
+This talk has [slides][steelconslides] and [video][steelconvid]! It was a talk I gave at [SteelCon][steelcon], a hacker conference in Sheffield, UK. Doubtlessly one of the best conferences in the UK, way better than other, more corporate events (which are for sellouts :P)
 
-# link and description of CampusCon 2012 talk
+# CampusCon 2012 - 802.11 Client Exploitation Talk
+No slides or video, cannot find either, and the CampusCon site seems dead. The slides being gone is probably a good thing, because they were awful slides (worst powerpoint!), and the lack of video... A godsend - I was sleep deprived. Was also my first proper speaking gig! Massive props to the WIT Hacking Society though for giving me the chance!
 
 
 [biella]: https://twitter.com/BiellaColeman
@@ -32,3 +35,9 @@ However, here is the sole [photo of the thing][lolphoto]
 [musalbas]: https://twitter.com/musalbas
 [tresorit]: https://tresorit.com/
 [lolphoto]: https://twitter.com/Tresorit/status/520164126740733952
+[royalcourt]: http://www.royalcourttheatre.com/whats-on/the-big-idea-teh-internet-is-serious-business
+[royalcourtvid]: https://www.youtube.com/watch?v=KpGiLPF5BxQ
+[tehinternet]: http://tehinternetisserious.biz/
+[steelconslides]: http://www.slideshare.net/infodox/steelcon-2014-process-injection-with-python
+[steelconvid]: https://www.youtube.com/watch?v=fOMZR5dl3Qk
+[steelcon]: http://www.steelcon.info/
