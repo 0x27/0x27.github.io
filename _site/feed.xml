@@ -6,13 +6,15 @@
 </description>
     <link>http://0x27.me/</link>
     <atom:link href="http://0x27.me/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 13 Nov 2014 14:35:39 +0000</pubDate>
-    <lastBuildDate>Thu, 13 Nov 2014 14:35:39 +0000</lastBuildDate>
+    <pubDate>Wed, 03 Dec 2014 14:58:10 +0000</pubDate>
+    <lastBuildDate>Wed, 03 Dec 2014 14:58:10 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
         <title>Proposal for a Key Revokation Procedure for Tor Hidden Services</title>
-        <description>&lt;p&gt;Warning in advance: I am not a proper cryptographer, and I am not a tor developer. I am just some gobshite on the internet who is going to make some probably incredibly stupid statements in this short posting that might be of interest to people far more intelligent than myself. Also, this is not exactly providing much in the lines of “implementation”, it is merely chucking an idea out there for the clever fuckers to figure out the details of ;)&lt;/p&gt;
+        <description>&lt;h2 id=&quot;warning-03122014-this-proposal-was-based-on-a-flawed-understanding-of-the-dht-and-will-not-work-with-the-current-tor-implementation-thanks-to-donnchadonncha-for-pointing-out-that-i-had-made-some-pretty-fucking-idiotic-assumptions-however-i-am-leaving-it-up-incase-the-implementation-changes-in-future-or-whatever&quot;&gt;Warning (03/12/2014): This proposal was based on a flawed understanding of the DHT. And will not work with the current tor implementation. Thanks to &lt;a href=&quot;http://donncha.is/&quot;&gt;Donncha&lt;/a&gt; for pointing out that I had made some pretty fucking idiotic assumptions. However, I am leaving it up incase the implementation changes in future or whatever.&lt;/h2&gt;
+
+&lt;p&gt;Warning in advance: I am not a proper cryptographer, and I am not a tor developer. I am just some gobshite on the internet who is going to make some probably incredibly stupid statements in this short posting that might be of interest to people far more intelligent than myself. Also, this is not exactly providing much in the lines of “implementation”, it is merely chucking an idea out there for the clever fuckers to figure out the details of ;)&lt;/p&gt;
 
 &lt;p&gt;So in light of the recent &lt;a href=&quot;http://www.wired.com/2014/11/operation-onymous-dark-web-arrests/&quot;&gt;FBI/Europol takedowns of a number of tor hidden services&lt;/a&gt;, and subsequent &lt;a href=&quot;http://www.dailydot.com/politics/doxbin-dark-net/&quot;&gt;reseizure of the doxbin hidden service&lt;/a&gt; by persons unknown (nachash was &lt;a href=&quot;https://twitter.com/loldoxbin/status/531907010158419968&quot;&gt;quite adamant&lt;/a&gt; that it was not him, and that he had given the keys to an interested party), it suddenly came to mind that there might be a need for a key revokation mechanism for tor hidden services - similar to the &lt;a href=&quot;https://security.ias.edu/how-revoke-gnupgpgp-signature-key&quot;&gt;revokation method in use with PGP&lt;/a&gt;. Except, obviously, better. &lt;/p&gt;
 
