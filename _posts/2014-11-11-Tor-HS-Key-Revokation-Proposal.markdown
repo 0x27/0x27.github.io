@@ -4,6 +4,8 @@ title:  "Proposal for a Key Revokation Procedure for Tor Hidden Services"
 date:   2014-11-13 23:00:00
 ---
 
+## Warning (03/12/2014): This proposal was based on a flawed understanding of the DHT. And will not work with the current tor implementation. Thanks to [Donncha][Donncha] for pointing out that I had made some pretty fucking idiotic assumptions. However, I am leaving it up incase the implementation changes in future or whatever.
+
 Warning in advance: I am not a proper cryptographer, and I am not a tor developer. I am just some gobshite on the internet who is going to make some probably incredibly stupid statements in this short posting that might be of interest to people far more intelligent than myself. Also, this is not exactly providing much in the lines of "implementation", it is merely chucking an idea out there for the clever fuckers to figure out the details of ;)
 
 So in light of the recent [FBI/Europol takedowns of a number of tor hidden services][tor takedown], and subsequent [reseizure of the doxbin hidden service][loldoxbin] by persons unknown (nachash was [quite adamant][lolnachash] that it was not him, and that he had given the keys to an interested party), it suddenly came to mind that there might be a need for a key revokation mechanism for tor hidden services - similar to the [revokation method in use with PGP][lolpgp]. Except, obviously, better. 
@@ -20,3 +22,4 @@ Uses for the revokation mechanism would include killing a HS post-compromise (by
 [lolnachash]: https://twitter.com/loldoxbin/status/531907010158419968
 [lolpgp]: https://security.ias.edu/how-revoke-gnupgpgp-signature-key
 [loldht]: https://www.torproject.org/docs/hidden-services.html.en
+[Donncha]: http://donncha.is/
