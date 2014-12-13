@@ -15,6 +15,7 @@ However, not everyone likes the idea of online anonymity. Some people are very m
 Anyway. The Tor people have put up a [statement against harassment][harassthing] and you might like to sign it. I have, maybe you can too? Perhaps we can send a message that says something along the lines of "fuck off mate, this bollocks isn't fucking acceptable" to those who would harass those who do so much for us.
 
 Stay classy, fellow Cyberians.
+
 ~skyhighatrist
 
 [lamergate]: http://en.wikipedia.org/wiki/Gamergate_controversy
