@@ -6,9 +6,32 @@
 </description>
     <link>http://0x27.me/</link>
     <atom:link href="http://0x27.me/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 03 Dec 2014 14:58:10 +0000</pubDate>
-    <lastBuildDate>Wed, 03 Dec 2014 14:58:10 +0000</lastBuildDate>
+    <pubDate>Sat, 13 Dec 2014 22:56:25 +0000</pubDate>
+    <lastBuildDate>Sat, 13 Dec 2014 22:56:25 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Statement of Solidarity With Torproject Anti Harassment Policy.</title>
+        <description>&lt;p&gt;I normally ignore &lt;a href=&quot;http://en.wikipedia.org/wiki/Gamergate_controversy&quot;&gt;drama on the internet&lt;/a&gt;, as it is mostly pointless noise. However, sometimes, some bullshit goes down that you simply cannot ignore, but have no idea what to do about.&lt;/p&gt;
+
+&lt;p&gt;What I am referring to, is the &lt;a href=&quot;http://charon.persephoneslair.org/~andrea/pandorasts/jeremy_becker/&quot;&gt;fucking ridiculous harassment&lt;/a&gt; of &lt;a href=&quot;https://www.torproject.org/about/corepeople.html.en&quot;&gt;torproject developers&lt;/a&gt; that has been going on for quite some time.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://www.torproject.org&quot;&gt;Tor Project&lt;/a&gt; do amazing things. They provide some of the most cutting edge research into low latency anonymity systems. They provide a public, volunteer ran, free, open source implementation of onion routing for &lt;a href=&quot;https://www.torproject.org/about/torusers.html.en&quot;&gt;everyone from activists to spooks to journos&lt;/a&gt; to use. This is an amazing service, and doubtlessly countless people owe their lives and continued liberty to the project.&lt;/p&gt;
+
+&lt;p&gt;However, not everyone likes the idea of online anonymity. Some people are very much against it, and like to threaten, harass, and try to intimidate Tor developers. Other idiots, being wholly incapable of rational thought, seem to be of the opinion the tor project is a government ran trap or honeypot - rumors that have gotten more common since &lt;a href=&quot;https://twitter.com/yashalevine&quot;&gt;some journo&lt;/a&gt; over at &lt;a href=&quot;http://pando.com/&quot;&gt;Pando&lt;/a&gt; decided to write a series of articles describing the Torproject as a government ran trap, in what, I must say, was one of the most horrifyingly awful examples of &lt;a href=&quot;http://pando.com/2014/07/16/tor-spooks/&quot;&gt;shit journalism&lt;/a&gt; I have seen in a good while. The idiot has not bothered try to repair the damage done, either, instead seemingly revelling in the shitstorm he has brought about, and generally pouring petrol on the fire.&lt;/p&gt;
+
+&lt;p&gt;Anyway. The Tor people have put up a &lt;a href=&quot;https://blog.torproject.org/&quot;&gt;statement against harassment&lt;/a&gt; and you might like to sign it. I have, maybe you can too? Perhaps we can send a message that says something along the lines of “fuck off mate, this bollocks isn’t fucking acceptable” to those who would harass those who do so much for us.&lt;/p&gt;
+
+&lt;p&gt;Stay classy, fellow Cyberians.
+~skyhighatrist&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 13 Dec 2014 23:00:00 +0000</pubDate>
+        <link>http://0x27.me/2014/12/13/Tor-Project-Anti-Harassment.html</link>
+        <guid isPermaLink="true">http://0x27.me/2014/12/13/Tor-Project-Anti-Harassment.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Proposal for a Key Revokation Procedure for Tor Hidden Services</title>
