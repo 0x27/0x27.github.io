@@ -20,6 +20,8 @@ Stay classy, fellow Cyberians.
 
 Edit: Fucking lol. Some guy called Paul Carr published [this pile of shite][lol] comparing tor to spooks. Anyway, thought whoever lands on this page might find it somewhat fucking hilarious, as it is simply adding more petrol to the fire. These Pando people really like escalation, don't they...
 
+Further edit of clarification: Yeah, I totally can get behind Andrea doxing the fuck out of some retard who was giving her shit. If someone is being a massive cock on the cybertubes, and they don't stop, you are well within your rights to kick them square in the teeth by any means necessary. If you be a massive fucking bellend on the internet, especially to people with skills, expect some fucking retaliation when they get sick of your shit. So, yeah, I totally applaud Andrea taking matters into her own hands - its what I would have done. Its what a whole lot of you would have done as well, just you won't fucking admit it (because its more fun to act all holier-than-thou).
+
 [lamergate]: http://en.wikipedia.org/wiki/Gamergate_controversy
 [harassment]: http://charon.persephoneslair.org/~andrea/pandorasts/jeremy_becker/
 [devs]: https://www.torproject.org/about/corepeople.html.en
