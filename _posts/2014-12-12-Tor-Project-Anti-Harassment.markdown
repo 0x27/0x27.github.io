@@ -18,6 +18,8 @@ Stay classy, fellow Cyberians.
 
 ~skyhighatrist
 
+Edit: Fucking lol. Some guy called Paul Carr published [this pile of shite][lol] comparing tor to spooks. Anyway, thought whoever lands on this page might find it somewhat fucking hilarious, as it is simply adding more petrol to the fire. These Pando people really like escalation, don't they...
+
 [lamergate]: http://en.wikipedia.org/wiki/Gamergate_controversy
 [harassment]: http://charon.persephoneslair.org/~andrea/pandorasts/jeremy_becker/
 [devs]: https://www.torproject.org/about/corepeople.html.en
@@ -27,3 +29,4 @@ Stay classy, fellow Cyberians.
 [pando]: http://pando.com/
 [shitjournoing]: http://pando.com/2014/07/16/tor-spooks/
 [harassthing]: https://blog.torproject.org/
+[lol]: http://pando.com/2014/12/10/its-time-for-tor-activists-to-stop-acting-like-the-spies-they-claim-to-hate/
