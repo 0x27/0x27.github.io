@@ -6,9 +6,89 @@
 </description>
     <link>http://0x27.me/</link>
     <atom:link href="http://0x27.me/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 13 Dec 2014 22:56:25 +0000</pubDate>
-    <lastBuildDate>Sat, 13 Dec 2014 22:56:25 +0000</lastBuildDate>
-    <generator>Jekyll v2.4.0</generator>
+    <pubDate>Fri, 13 Mar 2015 19:36:56 +0000</pubDate>
+    <lastBuildDate>Fri, 13 Mar 2015 19:36:56 +0000</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Oxidation of Borneol to Camphor</title>
+        <description>&lt;p&gt;I was not going to bother posting this up, as it lacks in pretty pictures, but ah well. Ended up publishing it on one of the forums and figured it was worth hosting here… I decided to be a bit more “descriptive” to make up for the lack of pictures!&lt;/p&gt;
+
+&lt;h2 id=&quot;part-1-oxidation-of-borneol-to-camphor&quot;&gt;Part 1: Oxidation of Borneol to Camphor.&lt;/h2&gt;
+
+&lt;p&gt;Oxidation reactions are useful mechanisms for converting one functional group in an organic compound to another. Notably, the conversion of 1* alcohols to aldehydes or acids, and conversion of 2* alcohols to ketones.&lt;/p&gt;
+
+&lt;p&gt;You can also do things like oxidize an amine to a nitro group (I was never able to confirm this, as back then I did not have a FTIR at my disposal, but I believe it worked, your mileage may vary - some experimental procedures use this route), and the likes.&lt;/p&gt;
+
+&lt;p&gt;Oxidation occurs when protons (Hydrogen) is stripped away from a compound, often replacing it with oxygen. Hence oxidation. We use an oxidizing agent to perform this.&lt;/p&gt;
+
+&lt;p&gt;In this experiment, we use H&lt;sub&gt;2&lt;/sub&gt;SO&lt;sub&gt;4&lt;/sub&gt;/Na&lt;sub&gt;2&lt;/sub&gt;Cr&lt;sub&gt;2&lt;/sub&gt;O&lt;sub&gt;7&lt;/sub&gt; as our oxidizing agent, to convert Borneol (a secondary alcohol) to Camphor (a ketone). This is a strong oxidizing agent, and also a suspected carcinogen, so it must be
+handled with care. Spills of such material are a serious hazard [1].&lt;/p&gt;
+
+&lt;h2 id=&quot;experimentalcooking-jesse-we-need-to-cook&quot;&gt;Experimental/Cooking (Jesse! We need to cook!):&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;2 grams of sodium dichromate were dissolved in 8ml distilled water, and slowly ~1.6ml of concentrated sulphuric acid was added. I may have used a slight excess of acid due to being distracted. This was left in the ice bath to cool.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;0.9870 grams of borneol was weighed out carefully on an analytical balance. It should have been a gram, but I was in a hurry as there were only 4 balances, and 17 people vying for them, so I was urged to “hurry the hell up”. This was dissolved in 5ml of diethylether in a 25ml erlenmeyer flask, and stirred. You would not believe how much of a pain in the arse it is to dissolve such a tiny amount of stuff in a tiny bloody container. The instructions called for 4ml of the ether, but an extra 1ml was used to wash borneol stuck to sides of it in. This was left in the ice bath to cool. At this point, a few sachets of salt were added to the ice to help with cooling.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Over the course of approximately 10 minutes, 6ml of the oxidizing solution was added to the borneol/ether solution with stirring and cooling to keep it chilled. After the addition was completed, further stirring/swirling/swearing was done for about 5 minutes.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The mixture was put into a seperatory funnel of capacity 150ml, with the flask rinsed a few times with small amounts of ether and water to get all of the material into the seperatory funnel. Some more water (10ml or so) was added to the seperatory funnel. This was done very carefully, again, see [1] for why. The seperatory funnel was vigorously shaken with repeated venting to prevent it exploding from pressure (having seen this happen before), and left on a retort stand to settle.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Once settled, the lower aqueous layer was drained off into one container. The ether layer was then transferred to a small beaker.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The aqueous layer was put back into the sep. funnel, some more ether added (around 15ml), and again shaken, swirled, vented, and let settle. The ether layer was combined with the other ether layer in the small beaker. This was repeated again (aqueous layer returned and separated, keeping ether layers together) a total of 4 times. Instructions specified 2, but I was unhappy with the “colour” of the layers. This is hard to explain, but it “seemed right” based on experience separating/extracting mixtures.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The combined ether layers were put into the seperatory funnel (a fair bit of the ether had evaporated over time, reducing its volume a bit), and it was washed first with 20ml of water, twice with 20ml of 5% bicarb, and again twice with water. Each time, the ether layer was returned to the funnel, with “a bit” (2 pasteur pipette loads) of ether added each time.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The ether layer was placed into a clean, dry erlenmeyer flask, and a lot of magnesium sulphate added (heaped spatula loads), until it no longer formed clumps with considerable stirring, but remained as a powder. The MgSO&lt;sub&gt;4&lt;/sub&gt; was anhydrous/dry, and was there to absorb the water. It forms clumps with water, hence when no more clumps formed, it was considered dry.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The ether layer was filtered out and retained, the residue discarded. The ether layer was placed in a small evaporating dish and heated on a steam bath until the ether evaporated. This was a visually impressive spectacle (probably amplified by a nonfunctioning fumehood leading to inhalation of fumes…), with it “bubbling up” and forming “powder bubbles” as the last of the ether evaporated.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The crude camphor was then weighed.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Using a sublimation apparatus (which looks suspiciously like a piece of drug paphernalia), the camphor was purified by subliming/recrystallizing it. This was also incredibly visually impressive, the initial evaporation and condensation looked somewhat akin to the process that occurs in an incredibly well cooled waterpipe.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The sublimed/purified camphor was then weighed and analysed using the FT-IR machine, which, because the computer attached to it runs Windows XP Service Pack 1, took a few attempts to get it to “just bloody work” and give me a graph. The graph is attached as a photograph, lightly annotated (the C=O peak highlighted).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://0x27.me/images/irspecborneol2camphor.jpg&quot; alt=&quot;IR Spec&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;results&quot;&gt;Results:&lt;/h2&gt;
+&lt;p&gt;Mass Borneol Used: 0.9870g&lt;br /&gt;
+Theoretical Yield: 0.9805g&lt;br /&gt;
+Mass Camphor (Crude): 0.5281g&lt;br /&gt;
+Mass Camphor (Pure?): 0.4454g&lt;br /&gt;
+Actual Yield (Crude): 53.51%&lt;br /&gt;
+Actual Yield (Pure?): 45.13%&lt;br /&gt;
+Mm Borneol: 154.25g/mol&lt;br /&gt;
+Mm Camphor: 153.23g/mol&lt;/p&gt;
+
+&lt;h2 id=&quot;referencenotessilly-things&quot;&gt;Reference/Notes/Silly things:&lt;/h2&gt;
+&lt;p&gt;[1] The guy working beside me did not exercise due care while putting the reaction mixture into a seperatory funnel, forgetting to check was the bloody valve closed. As expected, the reaction mixture went absolutely fucking everywhere, making a strange “bubbling” as it hit the table (a plastic coating on the table I think?). The lab techs reacted in a fashion I would expect if he spilled pure bloody cyanide everywhere, decontaminating it with bicarb and such&lt;/p&gt;
+
+&lt;p&gt;Also, amusingly, the table is still stained despite repeated washings with bicarb, acetone, and water. Brown “burns” on the surface, which I suspect were caused by it being oxidized.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 13 Mar 2015 20:54:34 +0000</pubDate>
+        <link>http://0x27.me/2015/03/13/Oxidation-Of-Borneol-To-Camphor.html</link>
+        <guid isPermaLink="true">http://0x27.me/2015/03/13/Oxidation-Of-Borneol-To-Camphor.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Statement of Solidarity With Torproject Anti Harassment Policy.</title>
@@ -22,8 +102,13 @@
 
 &lt;p&gt;Anyway. The Tor people have put up a &lt;a href=&quot;https://blog.torproject.org/&quot;&gt;statement against harassment&lt;/a&gt; and you might like to sign it. I have, maybe you can too? Perhaps we can send a message that says something along the lines of “fuck off mate, this bollocks isn’t fucking acceptable” to those who would harass those who do so much for us.&lt;/p&gt;
 
-&lt;p&gt;Stay classy, fellow Cyberians.
-~skyhighatrist&lt;/p&gt;
+&lt;p&gt;Stay classy, fellow Cyberians.&lt;/p&gt;
+
+&lt;p&gt;~skyhighatrist&lt;/p&gt;
+
+&lt;p&gt;Edit: Fucking lol. Some guy called Paul Carr published &lt;a href=&quot;http://pando.com/2014/12/10/its-time-for-tor-activists-to-stop-acting-like-the-spies-they-claim-to-hate/&quot;&gt;this pile of shite&lt;/a&gt; comparing tor to spooks. Anyway, thought whoever lands on this page might find it somewhat fucking hilarious, as it is simply adding more petrol to the fire. These Pando people really like escalation, don’t they…&lt;/p&gt;
+
+&lt;p&gt;Further edit of clarification: Yeah, I totally can get behind Andrea doxing the fuck out of some retard who was giving her shit. If someone is being a massive cock on the cybertubes, and they don’t stop, you are well within your rights to kick them square in the teeth by any means necessary. If you be a massive fucking bellend on the internet, especially to people with skills, expect some fucking retaliation when they get sick of your shit. So, yeah, I totally applaud Andrea taking matters into her own hands - its what I would have done. Its what a whole lot of you would have done as well, just you won’t fucking admit it (because its more fun to act all holier-than-thou).&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 13 Dec 2014 23:00:00 +0000</pubDate>
@@ -39,13 +124,13 @@
 
 &lt;p&gt;Warning in advance: I am not a proper cryptographer, and I am not a tor developer. I am just some gobshite on the internet who is going to make some probably incredibly stupid statements in this short posting that might be of interest to people far more intelligent than myself. Also, this is not exactly providing much in the lines of “implementation”, it is merely chucking an idea out there for the clever fuckers to figure out the details of ;)&lt;/p&gt;
 
-&lt;p&gt;So in light of the recent &lt;a href=&quot;http://www.wired.com/2014/11/operation-onymous-dark-web-arrests/&quot;&gt;FBI/Europol takedowns of a number of tor hidden services&lt;/a&gt;, and subsequent &lt;a href=&quot;http://www.dailydot.com/politics/doxbin-dark-net/&quot;&gt;reseizure of the doxbin hidden service&lt;/a&gt; by persons unknown (nachash was &lt;a href=&quot;https://twitter.com/loldoxbin/status/531907010158419968&quot;&gt;quite adamant&lt;/a&gt; that it was not him, and that he had given the keys to an interested party), it suddenly came to mind that there might be a need for a key revokation mechanism for tor hidden services - similar to the &lt;a href=&quot;https://security.ias.edu/how-revoke-gnupgpgp-signature-key&quot;&gt;revokation method in use with PGP&lt;/a&gt;. Except, obviously, better. &lt;/p&gt;
+&lt;p&gt;So in light of the recent &lt;a href=&quot;http://www.wired.com/2014/11/operation-onymous-dark-web-arrests/&quot;&gt;FBI/Europol takedowns of a number of tor hidden services&lt;/a&gt;, and subsequent &lt;a href=&quot;http://www.dailydot.com/politics/doxbin-dark-net/&quot;&gt;reseizure of the doxbin hidden service&lt;/a&gt; by persons unknown (nachash was &lt;a href=&quot;https://twitter.com/loldoxbin/status/531907010158419968&quot;&gt;quite adamant&lt;/a&gt; that it was not him, and that he had given the keys to an interested party), it suddenly came to mind that there might be a need for a key revokation mechanism for tor hidden services - similar to the &lt;a href=&quot;https://security.ias.edu/how-revoke-gnupgpgp-signature-key&quot;&gt;revokation method in use with PGP&lt;/a&gt;. Except, obviously, better.&lt;/p&gt;
 
 &lt;p&gt;Anyways. So onions are stored in a &lt;a href=&quot;https://www.torproject.org/docs/hidden-services.html.en&quot;&gt;distributed hash table&lt;/a&gt;, which, as the name suggests, is distributed. The hidden service domain is calculated from the public key of a private-public keypair. From what I can understand (and I may be very, very fucking wrong), the DHT basically holds the public key identifiers for each hidden service. Much like a keyserver in the PGP mechanism.&lt;/p&gt;
 
 &lt;p&gt;So, what I am proposing is an extension to the DHT protocol to not only allow publishing a hidden service descriptor to the DHT, but a secure revokation mechanism (based on the private key) that would allow a hidden service operator to “kill” a hidden service. Furthermore, a mechanism wherin prior to killing a HS, perhaps the ability to create new keys, sign with the old ones, pop it in the DHT, wait for a consensus mechanism to accept the new service, and then kill the old keys. This would, probably, be needlessly complex, however, so it would likely be best to just go with the revokation mechanism.&lt;/p&gt;
 
-&lt;p&gt;Uses for the revokation mechanism would include killing a HS post-compromise (by LE, Government, or malicious hackers) to defend the users of it from impersonation, amongst other things. &lt;/p&gt;
+&lt;p&gt;Uses for the revokation mechanism would include killing a HS post-compromise (by LE, Government, or malicious hackers) to defend the users of it from impersonation, amongst other things.&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 13 Nov 2014 23:00:00 +0000</pubDate>
@@ -96,7 +181,7 @@ Welcome to the twilight zone...
 &lt;p&gt;You can download the fork using Twilio on &lt;a href=&quot;https://github.com/0x27/twilightpam&quot;&gt;the github page&lt;/a&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Tue, 21 Oct 2014 19:00:00 +0100</pubDate>
+        <pubDate>Tue, 21 Oct 2014 18:00:00 +0000</pubDate>
         <link>http://0x27.me/2014/10/21/Python-PAM-Twilio-2fa.html</link>
         <guid isPermaLink="true">http://0x27.me/2014/10/21/Python-PAM-Twilio-2fa.html</guid>
         
@@ -114,7 +199,7 @@ Welcome to the twilight zone...
 &lt;p&gt;I will be publishing most of my code over at my &lt;a href=&quot;https://github.com/0x27&quot;&gt;Github&lt;/a&gt;, so do check it out :)&lt;/p&gt;
 
 </description>
-        <pubDate>Wed, 15 Oct 2014 18:54:34 +0100</pubDate>
+        <pubDate>Wed, 15 Oct 2014 17:54:34 +0000</pubDate>
         <link>http://0x27.me/2014/10/15/Hello-World.html</link>
         <guid isPermaLink="true">http://0x27.me/2014/10/15/Hello-World.html</guid>
         
