@@ -7,7 +7,7 @@ description: > # this means to ignore newlines until "baseurl:"
   and Computer Science 3.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://0x27.me" # the base hostname & protocol for your site
-#twitter_username: packetforger
+twitter_username: info_dox
 github_username:  '0x27'
 
 # Build settings
