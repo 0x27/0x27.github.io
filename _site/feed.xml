@@ -6,8 +6,8 @@
 </description>
     <link>http://0x27.me/</link>
     <atom:link href="http://0x27.me/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 16 Mar 2015 00:10:29 +0000</pubDate>
-    <lastBuildDate>Mon, 16 Mar 2015 00:10:29 +0000</lastBuildDate>
+    <pubDate>Mon, 16 Mar 2015 20:21:54 +0000</pubDate>
+    <lastBuildDate>Mon, 16 Mar 2015 20:21:54 +0000</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -174,9 +174,9 @@ sudo apt-get install hexchat&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;You can find the source code for the &lt;a href=&quot;https://github.com/0x27/irssi-shakespeare-insult&quot;&gt;IRSSI Shakespearean Insult Script Here&lt;/a&gt;, and source for the &lt;a href=&quot;https://github.com/0x27/hexchat-shakespeare-insult&quot;&gt;Hexchat Shakespearean Insult Script Here&lt;/a&gt;. &lt;a href=&quot;https://hexchat.github.io/&quot;&gt;Hexchat&lt;/a&gt; and &lt;a href=&quot;http://www.irssi.org/&quot;&gt;IRSSI&lt;/a&gt; are available at their respective websites, and the &lt;a href=&quot;https://github.com/mahmoudimus/irssi-python&quot;&gt;irssi-python&lt;/a&gt; plugin is also available. Documentation for the various clients and such are available on their respective websites.&lt;/p&gt;
 
 </description>
-        <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
-        <link>http://0x27.me/2015/03/20/Writing-IRC-Scripts-In-Python.html</link>
-        <guid isPermaLink="true">http://0x27.me/2015/03/20/Writing-IRC-Scripts-In-Python.html</guid>
+        <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
+        <link>http://0x27.me/2015/03/16/Writing-IRC-Scripts-In-Python.html</link>
+        <guid isPermaLink="true">http://0x27.me/2015/03/16/Writing-IRC-Scripts-In-Python.html</guid>
         
         
       </item>
