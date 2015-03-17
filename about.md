@@ -10,12 +10,15 @@ The opinions and suchlike expressed on this site are my own opinion and not that
 
 Hopefully you find some of the things here interesting :)
 
-You may reach me via the following email, but please use PGP, as it is not my mailserver:
+You may reach me via the following email, but please use PGP, as it is not my mailserver. Protip, if you are wishing to just chat over ciphertexts, PGP me a jabber ID and OTR fingerprint or something, as email has no forward secrecy and has loads of sexy metadata, wheras OTR has.
 
-Email: skyhighatrist (at) tfwno (dot) gf
-
-PGP ID: 0xB5C3969D 
+Email (personal): skyhighatrist (at) tfwno (dot) gf  
+PGP Pubkey: [0xB5C3969D][key-skyhighatrist]   
+Email (work): darren.martyn (at) xiphosresearch (dot) co (dot) uk  
+PGP Pubkey: [0xA39FEB56][key-xrl]
 
 [xiphosresearch]: http://www.xiphosresearch.com
 [gmit]: http://gmit.ie
 [insecurety]: http://insecurety.net
+[key-skyhighatrist]: http://0x27.me/0xB5C3969D.asc
+[key-xrl]: http://0x27.me/0xA39FEB56.asc
