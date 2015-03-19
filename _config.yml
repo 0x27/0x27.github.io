@@ -9,6 +9,7 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://0x27.me" # the base hostname & protocol for your site
 twitter_username: info_dox
 github_username:  '0x27'
+exclude: PoC||GTFO
 
 # Build settings
 markdown: kramdown
