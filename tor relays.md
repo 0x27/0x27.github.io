@@ -1,0 +1,39 @@
+---
+layout: page
+title: Tor Relays
+permalink: /tor/
+---
+
+I, like many other privacy conscious netizens who oppose mass surveillance, run a number of [tor relays][tor relays] in support of the [Tor project][tor project]. In the interests of 
+[гла́сность][glasnost], I am listing the hashes and "names" of every tor relay I run here. If, in the future, for a research project or whatever, I run non-standard tor relays to do, 
+say, traffic measuring, I will CLEARLY denote which ones are "doing wierd shit" so users can block them in their .torrc if they want to "opt out" of such statistical analysis (which 
+may be done in the future solely in the interests of science). Such nodes will also CLEARLY have labelled "EXPERIMENT" in the relay name field.
+
+Anyways, without further ado, here is links to the [globe][globe] profiles for each of my relays.
+
+[NationalCrimeAgency - AC9803701F9EE18194D40B38E47CE4C68CF2F567][ncarelay] (note: nothing to do with the actual UK National Crime Agency). Honest. Just happen to have a fun domain name 
+pointing at that box.  
+[Cyberia - 3BF32CED044BE4843978F14A316C769A47FE8481][cyberia]  
+[ChickenLiver - 73067CD4ADD8A294BDA913DF45B63190A52B5F9F][chickenliver]  
+[Neuromancer - 7DF22E97F13B28727D4FC7495E0933EB23012AE8][neuromancer]  
+[necronomicon - D76252B1A6E9F01FC6772CFFB651056A2B54F92B][necronomicon] (note: this hosts tor instance fell over for no fucking reason recently and the logs got fucked. I to this day 
+don't know why, absolutely no evidence of a compromise either. I probably just fucked something up.)  
+[SnowCrash - 670CCA3FDFCB6244ACA59112F823883F707F22CC][snowcrash]  
+
+Finally, something I am not quite comfortable with saying, but will say anyway. Running relays costs a non-zero sum of money every month. I, and many other relay operators, are doing 
+this on shoestring budgets. So if you cannot run a relay for whatever reasons, you should perhaps consider donating to relay operators via [Donncha's][donncha] amazing 
+[OnionTip][oniontip] service, which collects donations and distributes them across participating relay operators depending on how much they are contributing to the Tor network.
+
+[tor relays]: https://www.torproject.org/getinvolved/relays.html.en
+[tor project]: https://www.torproject.org/
+[glasnost]: http://en.wikipedia.org/wiki/Glasnost
+[globe]: https://globe.torproject.org/
+[ncarelay]: https://globe.torproject.org/#/relay/AC9803701F9EE18194D40B38E47CE4C68CF2F567
+[cyberia]: https://globe.torproject.org/#/relay/3BF32CED044BE4843978F14A316C769A47FE8481
+[chickenliver]: https://globe.torproject.org/#/relay/73067CD4ADD8A294BDA913DF45B63190A52B5F9F
+[neuromancer]: https://globe.torproject.org/#/relay/7DF22E97F13B28727D4FC7495E0933EB23012AE8
+[necronomicon]: https://globe.torproject.org/#/relay/D76252B1A6E9F01FC6772CFFB651056A2B54F92B
+[snowcrash]: https://globe.torproject.org/#/relay/670CCA3FDFCB6244ACA59112F823883F707F22CC
+[oniontip]: https://oniontip.com/
+[donncha]: http://donncha.is/
+
