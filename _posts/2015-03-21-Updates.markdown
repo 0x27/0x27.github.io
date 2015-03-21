@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Some Site Updates"
+date:   2015-03-21 00:00:00
+---
+Quick thing of updates for the site.  
+Firstly, I have updated [talks][talks] to contain the [BSides Hannover][bsideshn] material, which is also accessable on the [Github repo][gitrepo].   
+I also have added a [page listing my tor nodes][tornodes], for transparency reasons, along with updating my contact information on the [about page][about].  
+We also now have a [PoC||GTFO mirror][pocorgtfo], I strongly encourage you host one too!  
+Some new updates coming soon, including a tutorial on getting that sweet sweet z/OS up and running on a Linux laptop, which would be impossible without the help of [Soldier of 
+Fortran][sof], launch of a fun new service or two, and migration of some old content across.
+Finally, my exploit development stuff is all being pushed to the [Xiphos Research Exploits Repository][xrlsploits], my own fork is used for testing and such and is not exactly stable 
+at all, so if you want stable exploits, go for the Xiphos one, which is the "release master" repository :)
+
+[talks]: http://0x27.me/talks/
+[bsideshn]: http://bsideshn.org
+[gitrepo]: https://github.com/XiphosResearch/MoovMisManage
+[tornodes]: http://0x27.me/tor/
+[about]: http://0x27.me/about/
+[pocorgtfo]: http://0x27.me/PoCorGTFO/
+[sof]: https://twitter.com/mainframed767
+[xrlsploits]: https://github.com/XiphosResearch/exploits
