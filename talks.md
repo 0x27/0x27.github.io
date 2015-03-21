@@ -6,6 +6,11 @@ permalink: /talks/
 
 So, occasionally I get up to doing speaky-thingies. Here is a list of previous talks and any associated video/media/slides associated with them.
 
+# Bsides Hannover, 2015 - Shell on Wheels
+This was a talk detailing the reverse engineering of Icomera Moovbox products I performed and the discovery of a number of vulnerabilities, development of exploits for said 
+vulnerabiities, and post exploitation concepts developed for said products. There is a video forthcoming apparently, but for now heres the [slides][bsideshn-slides]. I quite enjoyed 
+this one, was a lot of fun the whole way through. 
+
 # Dublin Web Summit 2014 - Anonymous and Lulzsec: The Politics and Power Behind the Mask.
 This was a panel discussion with [Gabriella Coleman][biella] and [Donncha O Cearbhail][donncha] about Anonymous/LulzSec, the politics of the groups, and the general culture of them. 
 
@@ -41,3 +46,4 @@ No slides or video, cannot find either, and the CampusCon site seems dead. The s
 [steelconslides]: http://www.slideshare.net/infodox/steelcon-2014-process-injection-with-python
 [steelconvid]: https://www.youtube.com/watch?v=fOMZR5dl3Qk
 [steelcon]: http://www.steelcon.info/
+[bsideshn-slides]: http://www.slideshare.net/infodox/bsides-hannover-2015-shell-on-wheels
