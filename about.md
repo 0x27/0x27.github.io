@@ -17,6 +17,8 @@ PGP Pubkey: [0xB5C3969D][key-skyhighatrist]
 Email (work): darren.martyn (at) xiphosresearch (dot) co (dot) uk  
 PGP Pubkey: [0xA39FEB56][key-xrl]
 
+If you are so inclined to buy me a pint, the following bitcoin address would greatly accept your computational cycles: 13rZ67tmhi7M3nQ3w87uoNSHUUFmYx7f4V
+
 [xiphosresearch]: http://www.xiphosresearch.com
 [gmit]: http://gmit.ie
 [insecurety]: http://insecurety.net
