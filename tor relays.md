@@ -22,7 +22,7 @@ this on shoestring budgets. So if you cannot run a relay for whatever reasons, y
 [OnionTip][oniontip] service, which collects donations and distributes them across participating relay operators depending on how much they are contributing to the Tor network.
 
 # Changes:
-Cyberia Removed (29/04/2015) due to funding issues.
+Cyberia Removed (29/04/2015) due to funding issues.  
 Snowcrash Removed (29/04/2015) due to funding issues.
 
 [tor relays]: https://www.torproject.org/getinvolved/relays.html.en
