@@ -1,0 +1,72 @@
+==================================================================
+https://keybase.io/infodox
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://0x27.me
+  * I am infodox (https://keybase.io/infodox) on keybase.
+  * I have a public key with fingerprint 21E6 A50E FCC7 7A01 1714  F076 C455 F485 B5C3 969D
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "21e6a50efcc77a011714f076c455f485b5c3969d",
+            "host": "keybase.io",
+            "key_id": "c455f485b5c3969d",
+            "kid": "0101fd34607da07e2e37428dfbc83082567b16fbb46653bbe2aa4cb0021b8eae28510a",
+            "uid": "90b828b101db1f088a6577502d24c419",
+            "username": "infodox"
+        },
+        "service": {
+            "hostname": "0x27.me",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1430264442,
+    "expire_in": 157680000,
+    "prev": "a2c54abfef7ab1d13aa9da36b645e22a84e90f9ab5153eefe33b807a117b2e9c",
+    "seqno": 55,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v2
+
+owFtkm1QVFUYxxcCwQVnd0Qs0Sa9lVOxbff9ZQeHlzXKlwhkMGoQPOfec+EOunfZ
+XdgVRN7MSEkZYNqYMWPKssFJZkDFAJkpyKg0IYU0AxRwBihoXBGyaam7jH3rfDnn
+POf//53zPOepXfGYLjyoN2Pu7XM9738Y9MNXcVCXkRBTVoJBVdqHWUqwfLQ0yYot
+FznsDsXmwiwYSSAWMDiSRZHjAE4QHEHLOMeKNMPINM9ARqQEVpAwE5anOgMODQOB
+E5kVVYtpmxxF0qL/o89fOsAJnJAlimZxTgI4h0hEcTTJSzIUeQrnSYblIMHKENIs
+y1AQIhIAWoQ4ThKQRwCRPEPgQMMVLuEEHPIkDzWoBAkZ53nAMhzH4KRE0iJNCAGh
+EzlsYC/S1IpNViXVg5WaMC1YpIgoUIFAIo8EuIfkzNrKhNkdqksV1T1aMM/lslsC
+Htc+e0DkRjDnkT0HKjZJK6BmKEIOp6LaMAuhKUWXEuARNIWTLE3TpAlDHrviQDlK
+QMFwLI9rI3ANKtKQgBQZGkAZyRyAhERQAAgSoFjI0gwiScDTSMBlAUCGYCiEZERR
+kMc5oP0PJJEgYoGECmwqZmEY7Z0gV2M6lVwbcBU6EFaqfzd4XYguKFy3LDQ40AQ6
+/XLjf62xetio+8S5JTc2tSdsoTn9aeubw+aZI1fL9nq2/2js+m19tX6DqWaq/lj/
+K+aWmYGI5NApCsWpm5/wjVTOum5582KzKvuie46a3EJnf2t29l/p3p3JNZ6s5Zld
+bQ/cqLLY29d5xdqVX8g2nk2vuBX0GbXdtG081bv/7OcNzxxeiE+qvTDOultDzKcP
+gX66Yf10ZF/zsd9Px6y9n7kwPSKsLGYHH2SdPDMPDN2o4Gc7XnfuRbdU7u/90n67
+8V7nP98P+u3RYZcvBllTGucTT83oN3VMrNx5P6KyLi3zcDyaXGzU69ouXkiYazOU
+Dz27as5eN3/ieLNx67ZR3uLTZVReN/iffG/j2PXIFVa/58rs8w0hxboP4mK/3jhQ
+4JtIde9Ydmq2/fbfkxUHc5/6piM/84v2to8N1ry7+rXfRX0UdSM0zHN89dwbZ4Bw
+Y9I+sekanVQ16nsuON5zYEMCKtnTzm6pqN4FL50c+sWc0l9q/Bbriq49//K0n438
+6ah059XWqbGHgtySSF7O8ZarBd2H1mVHuXffWWx4vSJl4MB4ftzWjsRLZcW7THrj
+bIptNOJeyJGK4taWvKarNa/V1xv/jIjeUZUWU77bv9nza/I1T3fY8EtV4SPBC4OG
+tKTHO8mmP26WHlyTbbhpqF6c7npnLLn8Le95q2COC797osn38NPEF3yr1swP9Zr3
+/ws=
+=FCX3
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/infodox
+
+==================================================================
