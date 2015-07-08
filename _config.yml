@@ -10,6 +10,9 @@ url: "http://0x27.me" # the base hostname & protocol for your site
 twitter_username: info_dox
 github_username:  '0x27'
 exclude: PoC||GTFO
+exclude: HackBack
 
 # Build settings
 markdown: kramdown
+kramdown:
+  input: GFM
