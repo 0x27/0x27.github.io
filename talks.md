@@ -6,6 +6,12 @@ permalink: /talks/
 
 So, occasionally I get up to doing speaky-thingies. Here is a list of previous talks and any associated video/media/slides associated with them.
 
+# SteelCon 2015
+At [Steelcon 2015][steelcon] I spoke on "0wning the Internet of Trash". This was a fun talk/rant on hacking the planet with regards to "Internet of Things" devices, i.e. anything embedded with a network connection (network attached rootshells, I call 'em). Included some sweet hardware pr0n, some owning of devices, some discussions of extant attacks and malware, along with discussions of how best (in my opinion) to go about post-exploitation in the land of embedded devices. [Slides are available][steelcon-2015-slide], and I am told video is gonna be up soon :)
+
+# BerlinSides 0x7DF/PXE 0x7DF
+At [BerlinSides][berlinsides]/PXE I spoke on writing userland Solaris rootkits (LD_PRELOAD based), along with discussing the [Adios Hola][adioshola] disclosures. Somehow, due to things, ended up giving two talks when I planned on giving one. Was definately one of the most positive experiences I have had, and kind of has encouraged me to do more speaking stuff in the future due to an amazingly positive response. Slides should be available soon once I recover them from wherever the hell I left them on my hard drive :)
+
 # Bsides Hannover, 2015 - Shell on Wheels
 This was a talk detailing the reverse engineering of Icomera Moovbox products I performed and the discovery of a number of vulnerabilities, development of exploits for said 
 vulnerabiities, and post exploitation concepts developed for said products. There is a video forthcoming apparently, but for now heres the [slides][bsideshn-slides]. I quite enjoyed 
@@ -47,3 +53,6 @@ No slides or video, cannot find either, and the CampusCon site seems dead. The s
 [steelconvid]: https://www.youtube.com/watch?v=fOMZR5dl3Qk
 [steelcon]: http://www.steelcon.info/
 [bsideshn-slides]: http://www.slideshare.net/infodox/bsides-hannover-2015-shell-on-wheels
+[berlinsides]: http://berlinsides.org/
+[adioshola]: http://adios-hola.org/
+[steelcon-2015-slides]: http://www.slideshare.net/infodox/steelcon-2015-0wning-the-internet-of-trash
