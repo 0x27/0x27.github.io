@@ -31,5 +31,7 @@ ssh -lusername localhost -D 8080 -p 1337 # replace username and -p port value as
 
 Now you have a working tunnel! You should be ssh'd into your box, and you have a listening SOCKS5 proxy on port 8080 for tunnelling web browsing, email, etc through :)
 
+Let me know via email or whatever how this works out for you, I am very interested to know where it works and where it doesn't. Usually I rely on DNS/ICMP tunnelling or UDP over port 53 with OpenVPN, but sometimes you just have to blast through the fucker by speaking a language it doesn't even seem to comprehend :)
+
 [sctp]: https://en.wikipedia.org/wiki/Stream_Control_Transmission_Protocol
 [socat]: http://www.dest-unreach.org/socat/
