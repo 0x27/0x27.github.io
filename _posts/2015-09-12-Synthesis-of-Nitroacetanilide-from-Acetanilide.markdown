@@ -38,7 +38,7 @@ Anyways, on to the experimental/pictures part.
 8. Product was allowed to dry under vaccum for a while.
 ![dry]({{ site.url }}/images/9x4zd71.jpg)
 
-9. This is where the biggest cockup ever happened, so read closely. The product was meant to be recrystallized from methylated spirit/methanol. I sent my lab partner to procure this for me, and the guy just did not bother *did not read the fucking label*, and brought me a beaker of glacial acetic acid. My nose being ruined by this point, I did not discern the smell.Anyway, the product was dissolved, with great difficulty, using heating. The funny part happened during this. Becoming frustrated with the slow progress of dissolution, I decided to use a magnetic stirring hotplate. At this point, I did not know I had been given glacial acetic acid as opposed to Methanol.
+9. This is where the biggest cockup ever happened, so read closely. The product was meant to be recrystallized from methylated spirit/methanol. I sent my lab partner to procure this for me, and the guy just did not bother ***did not read the fucking label***, and brought me a beaker of glacial acetic acid. My nose being ruined by this point, I did not discern the smell.Anyway, the product was dissolved, with great difficulty, using heating. The funny part happened during this. Becoming frustrated with the slow progress of dissolution, I decided to use a magnetic stirring hotplate. At this point, I did not know I had been given glacial acetic acid as opposed to Methanol.
 
 So, onto the hotplate it goes, turn the stirrer up to eleven, and stand back. Moments later, a "cloud" of "acetic acid gas" (you know, STRONG vinegar fumes) evolved, punching my partner straight in the eyes and throat with the smell of a thousand chip shops.
 
@@ -50,10 +50,10 @@ Photo: Dissolving.
 Photo: Attempting Recovery.
 ![recover]({{ site.url }}/images/z4HlnrM.jpg)
 
-##Results
+## Results
 I need a new lab partner, my current unit is defective. I was also at fault for failing to check. Still though, we got what LOOKED to be a clean product out.
 
-##Conclusions:
+## Conclusions:
 Never trust a lab partner, always double check things. Even if you have an excellent working relationship, double fucking check.
 
 Anyway, provided you don't bollox it up like we did, this is a pretty simple way to manufacture p-nitroacetanilide and a solid introduction to nitration reactions.
