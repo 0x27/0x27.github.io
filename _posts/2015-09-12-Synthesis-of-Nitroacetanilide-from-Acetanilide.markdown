@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: Synthesis of p-Nitroacetanilide from Acetanilide
