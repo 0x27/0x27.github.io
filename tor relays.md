@@ -12,7 +12,7 @@ Anyways, without further ado, here is links to the [globe][globe] profiles for e
 [FreeLauriLove - 8096EA61F733C3030351401944F54F254185098C][FreeLauriLove]  
 [necronomicon - D76252B1A6E9F01FC6772CFFB651056A2B54F92B][necronomicon] (note: this hosts tor instance fell over for no fucking reason recently and the logs got fucked. I to this day don't know why, absolutely no evidence of a compromise either. I probably just fucked something up.)  
 [NationalCrimeAgency - AC9803701F9EE18194D40B38E47CE4C68CF2F567][ncarelay] (FUCK FEDS, AND LIBRARIES ARE AWESOME.)  
-[FreeLibraries - 79C23A2A8A3D8EC3B45A1087EEEB00F0B95641CB][freelibs] (FUCK FEDS. LIBRARIES ARE WIN.)
+[FreeLibraries - 79C23A2A8A3D8EC3B45A1087EEEB00F0B95641CB][freelibraries] (FUCK FEDS. LIBRARIES ARE WIN.)
 
 Finally, something I am not quite comfortable with saying, but will say anyway. Running relays costs a non-zero sum of money every month. I, and many other relay operators, are doing this on shoestring budgets. So if you cannot run a relay for whatever reasons, you should perhaps consider donating to relay operators via [Donncha's][donncha] amazing [OnionTip][oniontip] service, which collects donations and distributes them across participating relay operators depending on how much they are contributing to the Tor network.
 
@@ -34,7 +34,7 @@ NationalCrimeAgency Removed (08/07/2015) due to a huge fuckup where some malware
 [neuromancer]: https://globe.torproject.org/#/relay/7DF22E97F13B28727D4FC7495E0933EB23012AE8
 [necronomicon]: https://globe.torproject.org/#/relay/D76252B1A6E9F01FC6772CFFB651056A2B54F92B
 [FreeLauriLove]: https://atlas.torproject.org/#details/8096EA61F733C3030351401944F54F254185098C
-[freelibs]: https://atlas.torproject.org/#details/79C23A2A8A3D8EC3B45A1087EEEB00F0B95641CB
+[freelibraries]: https://atlas.torproject.org/#details/79C23A2A8A3D8EC3B45A1087EEEB00F0B95641CB
 [oniontip]: https://oniontip.com/
 [donncha]: http://donncha.is/
 
