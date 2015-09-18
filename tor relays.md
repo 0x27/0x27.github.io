@@ -17,6 +17,7 @@ Anyways, without further ado, here is links to the [globe][globe] profiles for e
 Finally, something I am not quite comfortable with saying, but will say anyway. Running relays costs a non-zero sum of money every month. I, and many other relay operators, are doing this on shoestring budgets. So if you cannot run a relay for whatever reasons, you should perhaps consider donating to relay operators via [Donncha's][donncha] amazing [OnionTip][oniontip] service, which collects donations and distributes them across participating relay operators depending on how much they are contributing to the Tor network.
 
 # Changes:
+FreeLibraries Added. FUCK FEDS. (18/09/2015)
 NationalCrimeAgency re-added. Because fuck it, thats why. And because of the Library Freedom Project. FUCK THE FEDS. (18/09/2015)
 FreeLauriLove added (11/09/2015)  
 Cyberia Removed (29/04/2015) due to funding issues.  
