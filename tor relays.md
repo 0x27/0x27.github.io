@@ -34,7 +34,7 @@ NationalCrimeAgency Removed (08/07/2015) due to a huge fuckup where some malware
 [neuromancer]: https://globe.torproject.org/#/relay/7DF22E97F13B28727D4FC7495E0933EB23012AE8
 [necronomicon]: https://globe.torproject.org/#/relay/D76252B1A6E9F01FC6772CFFB651056A2B54F92B
 [FreeLauriLove]: https://atlas.torproject.org/#details/8096EA61F733C3030351401944F54F254185098C
-[FreeLibraries]: https://atlas.torproject.org/#details/79C23A2A8A3D8EC3B45A1087EEEB00F0B95641CB
+[freelibs]: https://atlas.torproject.org/#details/79C23A2A8A3D8EC3B45A1087EEEB00F0B95641CB
 [oniontip]: https://oniontip.com/
 [donncha]: http://donncha.is/
 
