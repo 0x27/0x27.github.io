@@ -2,6 +2,9 @@
 layout: post
 title:  "Using the Python 'getpass' module"
 date:   2015-03-15 20:54:34
+categories:
+- python
+- getpass
 ---
 Clifford Sullivan (@cliffsull on twitter) recently asked how to go about safely accepting password input from an interactive program in python.
 

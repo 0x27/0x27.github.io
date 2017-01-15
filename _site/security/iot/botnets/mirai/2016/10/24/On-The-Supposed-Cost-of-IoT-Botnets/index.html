@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      On the supposed 'Cost' of IoT Botnets...  &middot; 0x27.me
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/naringu.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/form.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="shortcut icon" href="./public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <link rel="alternate" type="application/rss+xml" title="Mozilla RSS" href="feed.category.xml">
+  </head>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48740529-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<body class="theme-6dd">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+      <img width="125" height="125" alt="A photo of me" src="/images/head.jpeg">
+    <p>Home of the 0x27 Finger Discount</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/categories/">Category Index</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/media/">Media</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/talks/">Talks</a>
+        
+      
+    
+
+    <a class="sidebar-nav-item" href="https://github.com/0x27">GitHub</a>
+    <a class="sidebar-nav-item" href="https://twitter.com/info_dox">Twitter</a>
+    <a class="sidebar-nav-item" href="https://www.linkedin.com/in/darren-martyn-8411b149">LinkedIn</a>
+    <span class="sidebar-nav-item">Version 2.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2017. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">0x27.me</a>
+            <small>Home of the 0x27 Finger Discount</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">On the supposed 'Cost' of IoT Botnets... </h1>
+  <span class="post-date">24 Oct 2016</span>
+  <p><em>Note: The following article is intended to be highly tongue-in-cheek as it points out the glaringly obvious. I do not condone following any of the hypothetical “instructions” outlined in the thought experiment provided. This information is already known to the crooks out there who are doing nasty things to our internet, so its not like writing about it is going to do anyone any harm… The views expressed here are probably my own (on Tuesdays, at least) and do not represent the views of my cat, my employer, or my priest.</em></p>
+
+<p>I happened to read <a href="http://www.zerohedge.com/news/2016-10-24/want-hack-planet-iot-cannon-bring-down-web-can-be-yours-7500">an article</a> today on the supposed “cost” of obtaining your very own IoT (Internet of Trash) botnet, with which you can do a whole bunch of nasty criminal things, including, but not limited to, launching absolutely massive DDoS (Distributed Denial of Service) attacks.</p>
+
+<p>This article I read proclaims that you, yes, you, can have your very own DDoS botnet made of IoT devices for $7,500! All you have to do is go shopping on the “dark net” (lol) with some bitcoins, have a decent amount of ill-will towards someone you want to packet into the stone ages, and hey presto, botnet!</p>
+
+<p>Now, on reading this, I laughed a bit. I happen to <a href="https://www.youtube.com/watch?v=15ZMWldUIx8">know a few things, maybe</a>, about the absolutely atrocious state of IoT security, and how trivially abuseable it is.</p>
+
+<p>Anyway, in this bit of writing, I am going to explain why, exactly, the $7,500 figure is an absolute load of bollocks. The real sum of currency required is far, far less. So, to illustrate this, lets step through a hypothetical scenario.</p>
+
+<p><em>So you want to build an IoT botnet to DDoS your competitors on Xbox Live…</em></p>
+
+<p>Step 1, obviously, is going to be downloading yourself a copy of the <a href="https://github.com/0x27/linux.mirai">leaked Mirai source code</a>.</p>
+
+<p>Step 2, you go shopping around for a nice, big, server to host your C&amp;C (command and control) server on, at a hosting provider that does not really give a toss about what you do with it. I won’t provide any links to providers, but I found some really, really decent ones for about €40/month that don’t really care what you do with them. I, personally, have used them for internet-scale scanning projects in the past. They also, conveniently, accept Bitcoin. Buy two or three of these, from different providers (there is no shortage!), using different aliases/accounts. This way you can have failover C&amp;C servers.</p>
+
+<p>Step 3, is the “slightly hard bit”. So you have set up your C&amp;C servers with the handy instructions provided in the Mirai source code. You have a nice, redundant setup that should withstand the oncoming onslaught of abuse reports (more on those in a followup post) for a good while. Now you need to have a think about how to gain a competitive edge over literally every single other script kiddie (just like you!) out there who is intending on running their own IoT botnet.</p>
+
+<p>So what do you do, to get a competitive edge? Well, firstly, you <a href="https://github.com/0x27/linux.mirai/blob/master/mirai/bot/scanner.h#L11,L12">tweak the scanner source a bit</a> so that your bots scan faster, and harder, than everyone else. This gives you a slight competitive edge over the other, unmodified botnets, in terms of getting more infections faster.</p>
+
+<p>Next, you look around at some user-manuals for various IoT rubbish that uses Telnet, by using some <a href="http://lmgtfy.com/?q=filetype%3Apdf+%22default+password%22+%22telnet%22">deeply advanced Google queries</a>, find some more default user/pass combinations to add to the <a href="http://github.com/0x27/linux.mirai/blob/master/mirai/bot/scanner.c#L123,L185">huge list provided in Mirai already</a>. This will allow you to infect exciting new devices that no one else is infecting! Bored 14 year old script-kiddies are already up to this, based on my honeypot logs, so why aren’t you?</p>
+
+<p>For an even greater competitive edge, for the more discerning hacker with an abundance of free time (read as: a couple of days), you could go as far as to make a modified Mirai to scan for SSH as well as Telnet! Suddenly a whole new world of “stuff to infect” is available to you! You can even reuse the same password list! All you have to do is figure out how to cross compile and link libssh, something that a bit of googling stackoverflow should help you accomplish in minutes :)</p>
+
+<p>Step 4, now, Step 4 is the big, scary part. This is where you, young script kiddie, intent on DDoSing the entire planet, get to put on the big-boy pants and unleash fire and brimstone across the entire cybers by launching your malware! However! You need to get yourself some hosts to act as the “patient zeroes” to launch your infection from!</p>
+
+<p>The cheapest - and simplest - way to go about this is to simply hack yourself a few webservers to launch attacks from. Pick a recent Wordpress Plugin exploit, your favourite DirtyCow localroot exploit, a bit of google dorking, and you will have a handful of webservers to use as a base of infection within minutes! You can either simply infect them with the appropriately compiled Mirai binary (yes, it works on badly secured servers too, not just shitty embedded devices), or use them to do telnet/SSH scanning and infecting yourself. With a couple of boxes that have fat pipes as a base of infection, your botnet will grow to absurd numbers in no time!</p>
+
+<p>Step 5, in which you sit back maniacally cackling and stroking a fluffy white cat, commanding your armies of zombified toasters, and demanding “one beeeeelion dollars” to make the DDoS of whatever stop, is left to your imagination.</p>
+
+<p>Step 6 is really quite simple. Stop postponing the inevitable, and just phone your national police department and hand yourself in, you filthy criminal scum.</p>
+
+<p>So, total cost: 1 week of faffing about (at most), and probably less than €200 in total. Maybe a bit more if you order a heap of pizza while doing it. €200 is a lot less than $7,500, and you get your very own botnet of boxes to launch crimes with.</p>
+
+<p>In conclusion: We are going to see an absolute metric shitload of new Mirai variants cropping up over the next while, as it is an incredibly low-cost and low-effort way to get yourself some absolutely incredible DDoS powers. We are probably also going to see a whole load of poorly thought out and poorly researched articles on “how much an IoT botnet costs”. With this article, I intended to simply head off some of those at the pass by pointing out what every script kiddie out there knows - this stuff is super cheap, super nasty, and, unfortunately, super effective.</p>
+
+<p>f you happen to make some kind of internet connected widget or gizmo that probably shouldn’t have an IP address attached to it but does because it increases its sale value or whatever, maybe you should consider getting its security tested by people who are good at breaking such things. Maybe me? Maybe someone else? Just get it done by someone, before you end up being one of the vendors that is responsible for the next big onslaught of packets screaming across the wire, and are forever remembered for being yet another criminally negligent bunch of incompetents.</p>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/vpn/privacy/security/2015/11/26/Practical-Exploitation-of-Portfail/">
+            Practical Exploitation of the VPN 'PortFail' IP Leak against Torrent Users.
+            <small>26 Nov 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/chemistry/science/writeups/2015/09/12/Synthesis-of-Nitroacetanilide-from-Acetanilide/">
+            Synthesis of p-Nitroacetanilide from Acetanilide
+            <small>12 Sep 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/ssh/sctp/privacy/security/evasion/2015/07/27/SSH-Over-SCTP/">
+            SSH Over SCTP (With Socat)
+            <small>27 Jul 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="comments">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = '';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = '';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+
+    <div align="center" class="footer">
+        <a href="https://github.com/ariestiyansyah/naringu" target="_blank" title="naringu">Naringu</a>  is designed by Rizky Ariestiyansyah<br />Copyright © 2017 <br>
+    </div>
+  </body>
+</html>
+

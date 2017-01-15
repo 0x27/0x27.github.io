@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Proposal for a Key Revokation Procedure for Tor Hidden Services &middot; 0x27.me
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/naringu.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/form.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="shortcut icon" href="./public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <link rel="alternate" type="application/rss+xml" title="Mozilla RSS" href="feed.category.xml">
+  </head>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48740529-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<body class="theme-6dd">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+      <img width="125" height="125" alt="A photo of me" src="/images/head.jpeg">
+    <p>Home of the 0x27 Finger Discount</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/categories/">Category Index</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/media/">Media</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/talks/">Talks</a>
+        
+      
+    
+
+    <a class="sidebar-nav-item" href="https://github.com/0x27">GitHub</a>
+    <a class="sidebar-nav-item" href="https://twitter.com/info_dox">Twitter</a>
+    <a class="sidebar-nav-item" href="https://www.linkedin.com/in/darren-martyn-8411b149">LinkedIn</a>
+    <span class="sidebar-nav-item">Version 2.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2017. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">0x27.me</a>
+            <small>Home of the 0x27 Finger Discount</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Proposal for a Key Revokation Procedure for Tor Hidden Services</h1>
+  <span class="post-date">13 Nov 2014</span>
+  <h2 id="warning-03122014-this-proposal-was-based-on-a-flawed-understanding-of-the-dht-and-will-not-work-with-the-current-tor-implementation-thanks-to-donncha-for-pointing-out-that-i-had-made-some-pretty-fucking-idiotic-assumptions-however-i-am-leaving-it-up-incase-the-implementation-changes-in-future-or-whatever">Warning (03/12/2014): This proposal was based on a flawed understanding of the DHT. And will not work with the current tor implementation. Thanks to <a href="http://donncha.is/">Donncha</a> for pointing out that I had made some pretty fucking idiotic assumptions. However, I am leaving it up incase the implementation changes in future or whatever.</h2>
+
+<p>Warning in advance: I am not a proper cryptographer, and I am not a tor developer. I am just some gobshite on the internet who is going to make some probably incredibly stupid statements in this short posting that might be of interest to people far more intelligent than myself. Also, this is not exactly providing much in the lines of “implementation”, it is merely chucking an idea out there for the clever fuckers to figure out the details of ;)</p>
+
+<p>So in light of the recent <a href="http://www.wired.com/2014/11/operation-onymous-dark-web-arrests/">FBI/Europol takedowns of a number of tor hidden services</a>, and subsequent <a href="http://www.dailydot.com/politics/doxbin-dark-net/">reseizure of the doxbin hidden service</a> by persons unknown (nachash was <a href="https://twitter.com/loldoxbin/status/531907010158419968">quite adamant</a> that it was not him, and that he had given the keys to an interested party), it suddenly came to mind that there might be a need for a key revokation mechanism for tor hidden services - similar to the <a href="https://security.ias.edu/how-revoke-gnupgpgp-signature-key">revokation method in use with PGP</a>. Except, obviously, better.</p>
+
+<p>Anyways. So onions are stored in a <a href="https://www.torproject.org/docs/hidden-services.html.en">distributed hash table</a>, which, as the name suggests, is distributed. The hidden service domain is calculated from the public key of a private-public keypair. From what I can understand (and I may be very, very fucking wrong), the DHT basically holds the public key identifiers for each hidden service. Much like a keyserver in the PGP mechanism.</p>
+
+<p>So, what I am proposing is an extension to the DHT protocol to not only allow publishing a hidden service descriptor to the DHT, but a secure revokation mechanism (based on the private key) that would allow a hidden service operator to “kill” a hidden service. Furthermore, a mechanism wherin prior to killing a HS, perhaps the ability to create new keys, sign with the old ones, pop it in the DHT, wait for a consensus mechanism to accept the new service, and then kill the old keys. This would, probably, be needlessly complex, however, so it would likely be best to just go with the revokation mechanism.</p>
+
+<p>Uses for the revokation mechanism would include killing a HS post-compromise (by LE, Government, or malicious hackers) to defend the users of it from impersonation, amongst other things.</p>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/security/iot/botnets/mirai/2016/10/24/On-The-Supposed-Cost-of-IoT-Botnets/">
+            On the supposed 'Cost' of IoT Botnets... 
+            <small>24 Oct 2016</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/vpn/privacy/security/2015/11/26/Practical-Exploitation-of-Portfail/">
+            Practical Exploitation of the VPN 'PortFail' IP Leak against Torrent Users.
+            <small>26 Nov 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/chemistry/science/writeups/2015/09/12/Synthesis-of-Nitroacetanilide-from-Acetanilide/">
+            Synthesis of p-Nitroacetanilide from Acetanilide
+            <small>12 Sep 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="comments">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = '';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = '';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+
+    <div align="center" class="footer">
+        <a href="https://github.com/ariestiyansyah/naringu" target="_blank" title="naringu">Naringu</a>  is designed by Rizky Ariestiyansyah<br />Copyright © 2017 <br>
+    </div>
+  </body>
+</html>
+

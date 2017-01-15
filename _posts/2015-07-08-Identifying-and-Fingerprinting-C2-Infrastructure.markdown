@@ -2,6 +2,11 @@
 layout: post
 title:  "Tracking down spies C&C infrastructure for shits and giggles"
 date:   2015-07-08 13:37:00
+categories:
+- security
+- espionage
+- malware
+- shodan
 ---
 
 This is a quick post to splainz the methodology behind how we were able to make fingerprints for the Hacking Team and Equation Group C&C infrastructure allowing remote identification of their servers, as shown in [The Italian Job](https://github.com/0x27/TheItalianJob) and [Equation Smasher](https://github.com/0x27/EquationSmasher) releases on Github.

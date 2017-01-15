@@ -2,6 +2,12 @@
 layout: post
 title:  "Writing (Basic) IRC Scripts in Python"
 date:   2015-03-16 00:00:00
+categories:
+- python
+- irc
+- hexchat
+- irssi
+- programming
 ---
 This post is intended to be a gentle introduction into the fine and glorious art of writing IRC scripts (for irssi and hexchat, weechat is on the way) in the Python programming language. In this, you will be walked through, line by line, the "shakespeare.py" plugin for various IRC clients that I wrote out of 
 sheer boredom and a desire to insult people on IRC ye olde style.

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      ImgurScrot Release &middot; 0x27.me
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/naringu.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/form.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="shortcut icon" href="./public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <link rel="alternate" type="application/rss+xml" title="Mozilla RSS" href="feed.category.xml">
+  </head>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48740529-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<body class="theme-6dd">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+      <img width="125" height="125" alt="A photo of me" src="/images/head.jpeg">
+    <p>Home of the 0x27 Finger Discount</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/categories/">Category Index</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/media/">Media</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/talks/">Talks</a>
+        
+      
+    
+
+    <a class="sidebar-nav-item" href="https://github.com/0x27">GitHub</a>
+    <a class="sidebar-nav-item" href="https://twitter.com/info_dox">Twitter</a>
+    <a class="sidebar-nav-item" href="https://www.linkedin.com/in/darren-martyn-8411b149">LinkedIn</a>
+    <span class="sidebar-nav-item">Version 2.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2017. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">0x27.me</a>
+            <small>Home of the 0x27 Finger Discount</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">ImgurScrot Release</h1>
+  <span class="post-date">29 Mar 2015</span>
+  <p>So, bit of code I wrote while halfway going mad arguing with API’s at <a href="https://www.brumhack.co.uk/">BrumHack</a> in order to retain my sanity a little. This really, really, simple piece of code basically 
+just takes a screenshot using <a href="https://pypi.python.org/pypi/pyscreenshot">PyScreenshot</a> and uploads it to <a href="https://imgur.com">imgur</a> using the <a href="https://api.imgur.com">imgur api</a>.</p>
+
+<p>Now, to use it, just run it. You will need “pyscreenshot” and “requests” installed, which are both available via Pip. The rest is stdlib python. All it does is take a screenshot, 
+upload to imgur, and print the URL you can access the image. Grab it from <a href="https://github.com/0x27/imgurscrot">github here</a>.</p>
+
+<p>I guess I will first take the time to explain how the python screenshot library is used. See the following commented code block to see how it does its magic.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pyscreenshot</span> <span class="kn">as</span> <span class="nn">pyscrot</span> <span class="c"># import pyscreenshot module as pyscrot.</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">pyscrot</span><span class="o">.</span><span class="n">grab</span><span class="p">()</span> <span class="c"># grab the full screen and store the PNG screenshot into the image variable where its kept as a PIL object</span>
+<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">"screenshot.png"</span><span class="p">)</span> <span class="c"># save it to the file screenshot.png in CWD.</span></code></pre></figure>
+
+<p>Nothing complex about this, if you are interested in the hows and whys of the pyscreenshot modules inner workings, I suggest you have a look at its source code or something.</p>
+
+<p>Obviously, we want to store our image for just long enough to upload it, and writing a tempfile as I originally did is really ugly and tends to be non portable across platforms as 
+tempfile locations vary. So… We want our image as base64, in order to upload it. How do we do this…</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pyscreenshot</span> <span class="kn">as</span> <span class="nn">pyscrot</span> <span class="c"># import pyscreenshot module as pyscrot.</span>
+<span class="kn">import</span> <span class="nn">base64</span> <span class="c"># import the base64 module</span>
+<span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="o">*</span> <span class="c"># import everything from StringIO</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">pyscrot</span><span class="o">.</span><span class="n">grab</span><span class="p">()</span> <span class="c"># grab the full screen and store the PNG screenshot into the image variable where its kept as a PIL object</span>
+<span class="n">imgstr</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span> <span class="c"># create a StringIO object named imgstr</span>
+<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">imgstr</span><span class="p">,</span> <span class="s">'png'</span><span class="p">)</span> <span class="c"># save the image to the StringIO object (treating it like a file)</span>
+<span class="n">b64image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">standard_b64encode</span><span class="p">(</span><span class="n">imgstr</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span> <span class="c"># base64 the string stored in the imgstr object :)</span></code></pre></figure>
+
+<p>Now, because the <a href="https://github.com/Imgur/imgurpython/">python imgur library</a> seems to be hideously broken at the moment and I simply could not get the bastard thing to work even with its own samples, I simply 
+decided to use <a href="https://pypi.python.org/pypi/requests">python-requests</a> to manually make my API calls. Seeing as we are just uploading images anonymously, the only thing we give a shit about is the fact we 
+can, er, upload a screenshot.</p>
+
+<p>In order to upload the screenshot, we need to send an Authorization header with our ClientID in it, as part of a POST request containing the base64 encoded image and a title for it. We 
+get back a JSON response containing the URL to our image. In this example, our “image title” is Screenshot-<current time="" and="" date="">.png</current></p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">client_id</span> <span class="o">=</span> <span class="n">OUR_CLIENT_ID</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Client-ID '</span><span class="o">+</span><span class="n">client_id</span><span class="p">}</span> <span class="c"># authorization header.</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'image'</span><span class="p">:</span> <span class="n">b64image</span><span class="p">,</span> <span class="s">'title'</span><span class="p">:</span> <span class="s">'Screenshot-</span><span class="si">%</span><span class="s">s'</span> <span class="o">%</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M:</span><span class="si">%</span><span class="s">S-</span><span class="si">%</span><span class="s">d/</span><span class="si">%</span><span class="s">m/</span><span class="si">%</span><span class="s">Y"</span><span class="p">))}</span> <span class="c"># our image as base64 data as the "image" var, title as... title var.</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s">"https://api.imgur.com/3/upload.json"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span> <span class="c"># send the request</span>
+<span class="n">lol</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="c"># load the json response as ... json</span>
+<span class="k">print</span> <span class="n">lol</span><span class="p">[</span><span class="s">'data'</span><span class="p">][</span><span class="s">'link'</span><span class="p">]</span> <span class="c"># print the link to image stored in the json response</span></code></pre></figure>
+
+<p>Well, that concludes the explaination of how it works. Have fun :)</p>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/security/iot/botnets/mirai/2016/10/24/On-The-Supposed-Cost-of-IoT-Botnets/">
+            On the supposed 'Cost' of IoT Botnets... 
+            <small>24 Oct 2016</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/vpn/privacy/security/2015/11/26/Practical-Exploitation-of-Portfail/">
+            Practical Exploitation of the VPN 'PortFail' IP Leak against Torrent Users.
+            <small>26 Nov 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/chemistry/science/writeups/2015/09/12/Synthesis-of-Nitroacetanilide-from-Acetanilide/">
+            Synthesis of p-Nitroacetanilide from Acetanilide
+            <small>12 Sep 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="comments">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = '';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = '';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+
+    <div align="center" class="footer">
+        <a href="https://github.com/ariestiyansyah/naringu" target="_blank" title="naringu">Naringu</a>  is designed by Rizky Ariestiyansyah<br />Copyright © 2017 <br>
+    </div>
+  </body>
+</html>
+

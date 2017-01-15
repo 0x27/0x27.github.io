@@ -2,6 +2,11 @@
 layout: post
 title:  "2-Factor Auth for SSH using Twilio API and Python-PAM"
 date:   2014-10-21 18:00:00
+categories:
+- python
+- PAM
+- ssh
+- twilio
 ---
 So, first real post here. Inspired by a [post][chokepoint-post] over at the [Chokepoint blog][chokepoint-main], and after recently doing some reading up on the [Twilio][twilio-main] [API][twilio-api], I decided it would be fun to expand their little script to use Twilio instead of [TxtDrop][txtdrop] for the simple reason that Twilio supports a lot more countries (including Ireland and the UK, where I currently reside) than TxtDrop, and so I could have an excuse to mess with Twilio, as I need to get to grips with its API for another project currently under development. I also wanted 2 factor auth for the server I use for IRC.
 

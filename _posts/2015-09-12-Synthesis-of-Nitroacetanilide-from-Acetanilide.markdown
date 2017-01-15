@@ -2,6 +2,10 @@
 layout: post
 title: Synthesis of p-Nitroacetanilide from Acetanilide
 date: 2015-09-12 13:37:00
+categories:
+- chemistry
+- science
+- writeups
 ---
 
 This is another lab report dug up from the archives of lab reports for the fun of it.

@@ -2,6 +2,11 @@
 layout: post
 title:  "Proposal for a Key Revokation Procedure for Tor Hidden Services"
 date:   2014-11-13 23:00:00
+categories:
+- tor
+- security
+- privacy
+- mistakes
 ---
 
 ## Warning (03/12/2014): This proposal was based on a flawed understanding of the DHT. And will not work with the current tor implementation. Thanks to [Donncha][Donncha] for pointing out that I had made some pretty fucking idiotic assumptions. However, I am leaving it up incase the implementation changes in future or whatever.

@@ -2,6 +2,10 @@
 layout: post
 title:  "ImgurScrot Release"
 date:   2015-03-29 02:00:00
+categories:
+- projects
+- python
+- imgur
 ---
 So, bit of code I wrote while halfway going mad arguing with API's at [BrumHack][brumhack] in order to retain my sanity a little. This really, really, simple piece of code basically 
 just takes a screenshot using [PyScreenshot][pyscreenshot] and uploads it to [imgur][imgur] using the [imgur api][imgur api].

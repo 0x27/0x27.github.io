@@ -1,17 +1,39 @@
-# Site settings
-title: 0x27 Finger Discount
-#email: your-email@domain.com
-description: > # this means to ignore newlines until "baseurl:"
-  The adventures and exploits of a student/developer as they explore
-  wonderous new lands of unsanitized inputs, programming languages, 
-  and Computer Science 3.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://0x27.me" # the base hostname & protocol for your site
-twitter_username: info_dox
-github_username:  '0x27'
-exclude: PoC||GTFO
+# Dependencies
+markdown:            kramdown
+highlighter:         rouge
 
-# Build settings
-markdown: kramdown
-kramdown:
-  input: GFM
+# Gems (for Jekyll 3.0)
+gems: [jekyll-paginate]
+
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+
+# Setup
+title:               0x27.me
+tagline:             'Home of the 0x27 Finger Discount'
+description:         'Home of the 0x27 Finger Discount'
+url:                 http://0x27.me
+baseurl:             /
+paginate:            7
+
+# About/contact
+author:
+  name:              Darren Martyn
+  url:               https://twitter.com/info_dox
+
+# Custom vars
+version:             2.0
+
+# Social Media
+github:				http://github.com/0x27
+twitter:			http://twitter.com/info_dox
+
+# Theme Author (Please don't edit this line cause of MIT LICENSE rules)
+theme:
+  creator:			Rizky Ariestiyansyah
+  codename:			Naringu
+  link:             https://github.com/ariestiyansyah/naringu
+
+exclude: ['PoCorGTFO', 'HackBack']

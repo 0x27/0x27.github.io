@@ -2,6 +2,10 @@
 layout: post
 title:  "Oxidation of Borneol to Camphor"
 date:   2015-03-13 20:54:34
+categories:
+- chemistry
+- science
+- writeups
 ---
 I was not going to bother posting this up, as it lacks in pretty pictures, but ah well. Ended up publishing it on one of the forums and figured it was worth hosting here... I decided to be a bit more "descriptive" to make up for the lack of pictures!
 

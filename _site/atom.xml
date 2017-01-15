@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>0x27.me</title>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/"/>
+ <updated>2017-01-15T19:37:34+00:00</updated>
+ <id>http://localhost:4000</id>
+ <author>
+   <name>Darren Martyn</name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>On the supposed 'Cost' of IoT Botnets... </title>
+   <link href="http://localhost:4000/security/iot/botnets/mirai/2016/10/24/On-The-Supposed-Cost-of-IoT-Botnets/"/>
+   <updated>2016-10-24T21:54:34+01:00</updated>
+   <id>http://localhost:4000/security/iot/botnets/mirai/2016/10/24/On-The-Supposed-Cost-of-IoT-Botnets</id>
+   <content type="html">&lt;p&gt;&lt;em&gt;Note: The following article is intended to be highly tongue-in-cheek as it points out the glaringly obvious. I do not condone following any of the hypothetical “instructions” outlined in the thought experiment provided. This information is already known to the crooks out there who are doing nasty things to our internet, so its not like writing about it is going to do anyone any harm… The views expressed here are probably my own (on Tuesdays, at least) and do not represent the views of my cat, my employer, or my priest.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I happened to read &lt;a href=&quot;http://www.zerohedge.com/news/2016-10-24/want-hack-planet-iot-cannon-bring-down-web-can-be-yours-7500&quot;&gt;an article&lt;/a&gt; today on the supposed “cost” of obtaining your very own IoT (Internet of Trash) botnet, with which you can do a whole bunch of nasty criminal things, including, but not limited to, launching absolutely massive DDoS (Distributed Denial of Service) attacks.&lt;/p&gt;
+
+&lt;p&gt;This article I read proclaims that you, yes, you, can have your very own DDoS botnet made of IoT devices for $7,500! All you have to do is go shopping on the “dark net” (lol) with some bitcoins, have a decent amount of ill-will towards someone you want to packet into the stone ages, and hey presto, botnet!&lt;/p&gt;
+
+&lt;p&gt;Now, on reading this, I laughed a bit. I happen to &lt;a href=&quot;https://www.youtube.com/watch?v=15ZMWldUIx8&quot;&gt;know a few things, maybe&lt;/a&gt;, about the absolutely atrocious state of IoT security, and how trivially abuseable it is.&lt;/p&gt;
+
+&lt;p&gt;Anyway, in this bit of writing, I am going to explain why, exactly, the $7,500 figure is an absolute load of bollocks. The real sum of currency required is far, far less. So, to illustrate this, lets step through a hypothetical scenario.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;So you want to build an IoT botnet to DDoS your competitors on Xbox Live…&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Step 1, obviously, is going to be downloading yourself a copy of the &lt;a href=&quot;https://github.com/0x27/linux.mirai&quot;&gt;leaked Mirai source code&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Step 2, you go shopping around for a nice, big, server to host your C&amp;amp;C (command and control) server on, at a hosting provider that does not really give a toss about what you do with it. I won’t provide any links to providers, but I found some really, really decent ones for about €40/month that don’t really care what you do with them. I, personally, have used them for internet-scale scanning projects in the past. They also, conveniently, accept Bitcoin. Buy two or three of these, from different providers (there is no shortage!), using different aliases/accounts. This way you can have failover C&amp;amp;C servers.&lt;/p&gt;
+
+&lt;p&gt;Step 3, is the “slightly hard bit”. So you have set up your C&amp;amp;C servers with the handy instructions provided in the Mirai source code. You have a nice, redundant setup that should withstand the oncoming onslaught of abuse reports (more on those in a followup post) for a good while. Now you need to have a think about how to gain a competitive edge over literally every single other script kiddie (just like you!) out there who is intending on running their own IoT botnet.&lt;/p&gt;
+
+&lt;p&gt;So what do you do, to get a competitive edge? Well, firstly, you &lt;a href=&quot;https://github.com/0x27/linux.mirai/blob/master/mirai/bot/scanner.h#L11,L12&quot;&gt;tweak the scanner source a bit&lt;/a&gt; so that your bots scan faster, and harder, than everyone else. This gives you a slight competitive edge over the other, unmodified botnets, in terms of getting more infections faster.&lt;/p&gt;
+
+&lt;p&gt;Next, you look around at some user-manuals for various IoT rubbish that uses Telnet, by using some &lt;a href=&quot;http://lmgtfy.com/?q=filetype%3Apdf+%22default+password%22+%22telnet%22&quot;&gt;deeply advanced Google queries&lt;/a&gt;, find some more default user/pass combinations to add to the &lt;a href=&quot;http://github.com/0x27/linux.mirai/blob/master/mirai/bot/scanner.c#L123,L185&quot;&gt;huge list provided in Mirai already&lt;/a&gt;. This will allow you to infect exciting new devices that no one else is infecting! Bored 14 year old script-kiddies are already up to this, based on my honeypot logs, so why aren’t you?&lt;/p&gt;
+
+&lt;p&gt;For an even greater competitive edge, for the more discerning hacker with an abundance of free time (read as: a couple of days), you could go as far as to make a modified Mirai to scan for SSH as well as Telnet! Suddenly a whole new world of “stuff to infect” is available to you! You can even reuse the same password list! All you have to do is figure out how to cross compile and link libssh, something that a bit of googling stackoverflow should help you accomplish in minutes :)&lt;/p&gt;
+
+&lt;p&gt;Step 4, now, Step 4 is the big, scary part. This is where you, young script kiddie, intent on DDoSing the entire planet, get to put on the big-boy pants and unleash fire and brimstone across the entire cybers by launching your malware! However! You need to get yourself some hosts to act as the “patient zeroes” to launch your infection from!&lt;/p&gt;
+
+&lt;p&gt;The cheapest - and simplest - way to go about this is to simply hack yourself a few webservers to launch attacks from. Pick a recent Wordpress Plugin exploit, your favourite DirtyCow localroot exploit, a bit of google dorking, and you will have a handful of webservers to use as a base of infection within minutes! You can either simply infect them with the appropriately compiled Mirai binary (yes, it works on badly secured servers too, not just shitty embedded devices), or use them to do telnet/SSH scanning and infecting yourself. With a couple of boxes that have fat pipes as a base of infection, your botnet will grow to absurd numbers in no time!&lt;/p&gt;
+
+&lt;p&gt;Step 5, in which you sit back maniacally cackling and stroking a fluffy white cat, commanding your armies of zombified toasters, and demanding “one beeeeelion dollars” to make the DDoS of whatever stop, is left to your imagination.&lt;/p&gt;
+
+&lt;p&gt;Step 6 is really quite simple. Stop postponing the inevitable, and just phone your national police department and hand yourself in, you filthy criminal scum.&lt;/p&gt;
+
+&lt;p&gt;So, total cost: 1 week of faffing about (at most), and probably less than €200 in total. Maybe a bit more if you order a heap of pizza while doing it. €200 is a lot less than $7,500, and you get your very own botnet of boxes to launch crimes with.&lt;/p&gt;
+
+&lt;p&gt;In conclusion: We are going to see an absolute metric shitload of new Mirai variants cropping up over the next while, as it is an incredibly low-cost and low-effort way to get yourself some absolutely incredible DDoS powers. We are probably also going to see a whole load of poorly thought out and poorly researched articles on “how much an IoT botnet costs”. With this article, I intended to simply head off some of those at the pass by pointing out what every script kiddie out there knows - this stuff is super cheap, super nasty, and, unfortunately, super effective.&lt;/p&gt;
+
+&lt;p&gt;f you happen to make some kind of internet connected widget or gizmo that probably shouldn’t have an IP address attached to it but does because it increases its sale value or whatever, maybe you should consider getting its security tested by people who are good at breaking such things. Maybe me? Maybe someone else? Just get it done by someone, before you end up being one of the vendors that is responsible for the next big onslaught of packets screaming across the wire, and are forever remembered for being yet another criminally negligent bunch of incompetents.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Practical Exploitation of the VPN 'PortFail' IP Leak against Torrent Users.</title>
+   <link href="http://localhost:4000/vpn/privacy/security/2015/11/26/Practical-Exploitation-of-Portfail/"/>
+   <updated>2015-11-26T03:13:37+00:00</updated>
+   <id>http://localhost:4000/vpn/privacy/security/2015/11/26/Practical-Exploitation-of-Portfail</id>
+   <content type="html">&lt;p&gt;Today there was a &lt;a href=&quot;https://www.perfect-privacy.com/blog/2015/11/26/ip-leak-vulnerability-affecting-vpn-providers-with-port-forwarding/&quot;&gt;critical vulnerability in various VPN providers disclosed by the Perfect Privacy VPN’s security team&lt;/a&gt;. This vulnerability can lead to “unmasking” or “decloaking” of VPN users under certain conditions, and after some analysis of how it works, I determined that this issue is of utmost importance to those who use VPN services to mask their bittorrent traffic from MAFIAA scum, as it can allow for ‘uncloaking’ of Bittorrent users quite readily.&lt;/p&gt;
+
+&lt;p&gt;In the spirit of openness, and now that the bugs details are public, I have decided to outline an example attack which would allow for someone to decloak Torrent users hiding behind vulnerable VPN’s. While I am not providing some automated deanonymizing toolkit for getting the job done, the instructions below should suffice for someone else to reproduce the attack and demonstrate its effectiveness in deanonymizing users.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-be-evil&quot;&gt;How to be evil:&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Sell your soul to the devil and become the kind of wanker who wants to help sue bittorrent users.&lt;/li&gt;
+  &lt;li&gt;Bulk register accounts on VPN’s that have been found to be vulnerable to this attack.&lt;/li&gt;
+  &lt;li&gt;For torrents of interest, become a peer in the peer swarm, to gather IP’s that are “protected” by VPN’s.&lt;/li&gt;
+  &lt;li&gt;Match IP’s of peers in the swarm against a list of known-vulnerable VPN exit IP’s.&lt;/li&gt;
+  &lt;li&gt;Spin up a VPN connection using the same exit server as the client(s) you wish to “uncloak”.&lt;/li&gt;
+  &lt;li&gt;Port forward torrent port using the VPN and then join the peer swarm. You want to look like a good peer. Perhaps even deny non-interesting peers access, or whatever method you need to do to be attractive to your victim(s) of interest.&lt;/li&gt;
+  &lt;li&gt;When the peers of interest connect to you, they will reveal their real IP address.&lt;/li&gt;
+  &lt;li&gt;Summon your evil lawyer subpeona teams, and take a good, hefty dose of whatever it is that kills your conscience enough to permit you to work for evil copyright scum.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;As you can see, this attack is well within the capabilities of almost anyone - no nation state capabilities needed. You would simply need to have the budget to buy accounts on multiple VPN services (to identify vulnerable ones, and also for the deanonymizing step), a list of torrents that were of interest to you (i.e. ones that you are ‘protecting’ the copyright of, or some such bullshit. You could just use the top 100 on any given day if you were just generally being a bastard though), a computer, and a minimal amount of technical knowledge.&lt;/p&gt;
+
+&lt;p&gt;I believe this kind of attack is probably going to be used heavily by copyright-litigation firms trying to prosecute Torrent users in the future, so it is probably best to double check that the VPN provider you are using does not suffer this vulnerability. If they do, notify them, and make sure they fix it.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Synthesis of p-Nitroacetanilide from Acetanilide</title>
+   <link href="http://localhost:4000/chemistry/science/writeups/2015/09/12/Synthesis-of-Nitroacetanilide-from-Acetanilide/"/>
+   <updated>2015-09-12T14:37:00+01:00</updated>
+   <id>http://localhost:4000/chemistry/science/writeups/2015/09/12/Synthesis-of-Nitroacetanilide-from-Acetanilide</id>
+   <content type="html">&lt;p&gt;This is another lab report dug up from the archives of lab reports for the fun of it.&lt;/p&gt;
+
+&lt;p&gt;So, we got to do a nitration ages ago in organic chemistry labs, which was a whole bunch of fun. I had not nitrated anything in a long while when this chance arose, so it brought back some very, very fun memories. Now, this report has no yield or “after synth testing”, for reasons which will become apparent later.&lt;/p&gt;
+
+&lt;p&gt;Acetanilide can be nitrated using a mixture of nitric and sulphuric acids. The reasons for using sulphuric acid in the nitration of aromatic compounds is actually more interesting than I had previously thought, and I will be posting to explain that mechanism at a later date as it involves a great deal of diagrams, and I need to find another copy of Chemdraw as my by-hand drawing skills are a tad shite…&lt;/p&gt;
+
+&lt;p&gt;Anyways, on to the experimental/pictures part.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;5 grams of acetanilide was weighed out, along with 5ml glacial acetic acid.
+&lt;img src=&quot;http://localhost:4000/images/LMnaHXT.jpg&quot; alt=&quot;weighing out&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The acetanilide was dissolved in the glacial acetic acid in a 100ml beaker with a lot of stirring. It became a bit difficult to dissolve, so more stirring!
+&lt;img src=&quot;http://localhost:4000/images/aYbZBVY.jpg&quot; alt=&quot;dissolve&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;10ml of conc. sulphuric acid was added to this mixture with stirring and chilled in an ice bath. It became “gloopy”, about the consistency of polystyrene/petrol napalm, and heated up considerably. It also turned slightly yellow.
+&lt;img src=&quot;http://localhost:4000/images/Z6fdMHR.jpg&quot; alt=&quot;add H2SO4&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;While stirring, and keeping the temperature below 25*C in the ice bath (which again, I had salted), 2ml of concentrated nitric acid was added dropwise. This took a good while to do.
+&lt;img src=&quot;http://localhost:4000/images/b7lzIAf.jpg&quot; alt=&quot;add nitric&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/images/zotZyKk.jpg&quot; alt=&quot;add and stir&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The beaker was removed from the ice bath and allowed to stand for ~30 minutes unattended, in the fume hood.
+&lt;img src=&quot;http://localhost:4000/images/TayiyVr.jpg&quot; alt=&quot;let settle&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The contents were dumped into ~50g of crushed ice, and the beaker rinsed with distilled water, the rinsings being added to the crushed ice mixture. This was stirred and a precipitate was observed.
+&lt;img src=&quot;http://localhost:4000/images/HQ6lUAY.jpg&quot; alt=&quot;precipitate it&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The ice was let melt for 20 minutes, and the mixture was filtered using vaccum filtration. Water was poured through the funnel to wash the product.
+&lt;img src=&quot;http://localhost:4000/images/u7iiCzm.jpg&quot; alt=&quot;filterwash&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Product was allowed to dry under vaccum for a while.
+&lt;img src=&quot;http://localhost:4000/images/9x4zd71.jpg&quot; alt=&quot;dry&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;This is where the biggest cockup ever happened, so read closely. The product was meant to be recrystallized from methylated spirit/methanol. I sent my lab partner to procure this for me, and the guy just did not bother &lt;strong&gt;&lt;em&gt;did not read the fucking label&lt;/em&gt;&lt;/strong&gt;, and brought me a beaker of glacial acetic acid. My nose being ruined by this point, I did not discern the smell.Anyway, the product was dissolved, with great difficulty, using heating. The funny part happened during this. Becoming frustrated with the slow progress of dissolution, I decided to use a magnetic stirring hotplate. At this point, I did not know I had been given glacial acetic acid as opposed to Methanol.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So, onto the hotplate it goes, turn the stirrer up to eleven, and stand back. Moments later, a “cloud” of “acetic acid gas” (you know, STRONG vinegar fumes) evolved, punching my partner straight in the eyes and throat with the smell of a thousand chip shops.&lt;/p&gt;
+
+&lt;p&gt;The solution was let sit in an ice bath then, trying to recover a product. Less than 200mg was recovered, however the lab demonstrator told me the crystals recovered would be of incredibly high purity due to the “unusual” recrystallization performed. Simply due to a time constraint, I never got to put the sample on the FT-IR machine, which was a major disappointment as I enjoy using that piece of hardware!&lt;/p&gt;
+
+&lt;p&gt;Photo: Dissolving.
+&lt;img src=&quot;http://localhost:4000/images/XhwIaLd.jpg&quot; alt=&quot;dissolve&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Photo: Attempting Recovery.
+&lt;img src=&quot;http://localhost:4000/images/z4HlnrM.jpg&quot; alt=&quot;recover&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
+&lt;p&gt;I need a new lab partner, my current unit is defective. I was also at fault for failing to check. Still though, we got what LOOKED to be a clean product out.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusions&quot;&gt;Conclusions:&lt;/h2&gt;
+&lt;p&gt;Never trust a lab partner, always double check things. Even if you have an excellent working relationship, double fucking check.&lt;/p&gt;
+
+&lt;p&gt;Anyway, provided you don’t bollox it up like we did, this is a pretty simple way to manufacture p-nitroacetanilide and a solid introduction to nitration reactions.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>SSH Over SCTP (With Socat)</title>
+   <link href="http://localhost:4000/ssh/sctp/privacy/security/evasion/2015/07/27/SSH-Over-SCTP/"/>
+   <updated>2015-07-27T14:37:00+01:00</updated>
+   <id>http://localhost:4000/ssh/sctp/privacy/security/evasion/2015/07/27/SSH-Over-SCTP</id>
+   <content type="html">&lt;p&gt;This is a quick post, kind of a reposting of a thing I pastebinned about a year ago that has served me REALLY well in evading stupid paywalls in airports and the likes. Also in evading a ridiculous firewall at the Uni I sometimes attend.&lt;/p&gt;
+
+&lt;p&gt;The prerequisites are that you have a Linux box (maybe a Mac will work, idk. Not an OSX user but I can test if theres demand for it), a remote server, and a bit of familiarity with the command line.&lt;/p&gt;
+
+&lt;p&gt;For the remote server, any server with a public IP address will do so long as you ensure it supports the &lt;a href=&quot;https://en.wikipedia.org/wiki/Stream_Control_Transmission_Protocol&quot;&gt;SCTP&lt;/a&gt; protocol. Look up SCTP support for your distribution, usually its the lksctp libraries that need to be installed. DigitalOcean Debian instances and Amazon EC2 Ubuntu instances seem to work fine out of the box. Your local box also needs SCTP support. Again, with Debian, Ubuntu, and Arch Linux, this never seems to be an issue. Finally, you will need SSH access to the remote box, preferably as a user with admin privs so you can set up socat on it and listen on privileged ports.&lt;/p&gt;
+
+&lt;p&gt;So, here goes. On the serverside (set this up BEFORE you need it), you will need to install &lt;a href=&quot;http://www.dest-unreach.org/socat/&quot;&gt;“socat”&lt;/a&gt; (should be available in your distros repos. If not, compile it from source or something!). Next, you will need to just run the following command in a screen session.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;socat SCTP-LISTEN:80,fork TCP:localhost:22 &lt;span class=&quot;c&quot;&gt;# assuming you want the SCTP socket to listen on port 80/SCTP and sshd is on 22/TCP&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This will spin up a socat listener on port 80/SCTP, and forward any traffic sent to it through to port 22/TCP on the listening host. Change these ports as you see fit - often I run sshd on a different port (443/TCP) to evade other firewalls and the likes.&lt;/p&gt;
+
+&lt;p&gt;Now, on the client side, when you want to connect, you will also need socat working with SCTP support. Same deal as making it work on the serverside. To spin up your socat proxy on local to forward to the remote server, do the following.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;socat TCP-LISTEN:1337,fork SCTP:SERVER_IP:80 &lt;span class=&quot;c&quot;&gt;# replace SERVER_IP with IP of listening server, and 80 with whatever port the SCTP listener is on :)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This will spin up a TCP listener on localhost:1337/TCP, which is being forwarded over SCTP to the TCP port at the other end of the tunnel (in my example, port 22). To connect to the sshd at the other end, you just need to ssh to localhost:1337, and to get yourself some SOCKS5 for web browsing through your tunnel, do dynamic port forwarding. The following example sums it up for you.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;ssh -lusername localhost -D 8080 -p 1337 &lt;span class=&quot;c&quot;&gt;# replace username and -p port value as needed...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now you have a working tunnel! You should be ssh’d into your box, and you have a listening SOCKS5 proxy on port 8080 for tunnelling web browsing, email, etc through :)&lt;/p&gt;
+
+&lt;p&gt;Let me know via email or whatever how this works out for you, I am very interested to know where it works and where it doesn’t. Usually I rely on DNS/ICMP tunnelling or UDP over port 53 with OpenVPN, but sometimes you just have to blast through the fucker by speaking a language it doesn’t even seem to comprehend :)&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Looking back at the ElasticSearch 'Groovy' Remote Code Execution Vulnerability.</title>
+   <link href="http://localhost:4000/elasticsearch/exploit/vulnerability/security/2015/07/15/looking-back-elasticsearch-groovy-remote-code-execution/"/>
+   <updated>2015-07-15T04:13:37+01:00</updated>
+   <id>http://localhost:4000/elasticsearch/exploit/vulnerability/security/2015/07/15/looking-back-elasticsearch-groovy-remote-code-execution</id>
+   <content type="html">&lt;h2 id=&quot;4-months-ago&quot;&gt;4 months ago…&lt;/h2&gt;
+&lt;p&gt;I was examining using ‘ElasticSearch’ as a logging mechanism for recording and searching data from a network of honeypots I run. Well, a mixture of ElasticSearch and Kibana, for logging Kippo and suchlike, when I stumbled across a posting on the “Wooyun Drops” Chinese security research blog detailing a vulnerability in the (at the time current) version of ElasticSearch.&lt;/p&gt;
+
+&lt;p&gt;This release did not include a fully functional PoC - some details were censored - but it swiftly became apparent that the “Groovy” scripting engine in ElasticSearch could be tricked into loading an arbritary Java class and executing code thanks to Java having this Reflection trick allowing one class to load another.&lt;/p&gt;
+
+&lt;p&gt;Essentially, by sending a JSON request to execute a script using the “allowed” Math library, you could load in any other (not allowed) Java functionality you wanted and use functions in them to do things, such as execute shell commands using the Runtime library.&lt;/p&gt;
+
+&lt;p&gt;Naturally, &lt;a href=&quot;http://www.theregister.co.uk/2015/03/10/elastic_search_vuln/&quot;&gt;we wrote a functioning proof of concept and immediately published it&lt;/a&gt;, as people were becoming aware of the vulnerability (&lt;a href=&quot;http://jordan-wright.com/blog/2015/03/08/elasticsearch-rce-vulnerability-cve-2015-1427/&quot;&gt;Jordan Wright had published his analysis of it&lt;/a&gt;), and it was considered a good way to raise awareness.&lt;/p&gt;
+
+&lt;p&gt;You may find the exploit code &lt;a href=&quot;https://github.com/XiphosResearch/exploits/tree/master/ElasticSearch&quot;&gt;here, including a nice Asciicast demo of exploitation in practice&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Soon after, the Metasploit Framework had their own variation of the exploit (which gives a Java Meterpreter shell as opposed to my quick and dirty “pseudoshell”), and exploitation in the wild by malicious actors began in earnest.&lt;/p&gt;
+
+&lt;p&gt;Most of the exploit attempts we saw were dropping fairly rubbish DDoS malware, heavily documented by the “Malware Must Die” team, they even point to my PoC exploit code at one point as an example of how the vulnerability is being leveraged, and also &lt;a href=&quot;http://jordan-wright.com/blog/2015/05/11/60-days-of-watching-hackers-attack-elasticsearch/&quot;&gt;well documented by Jordan&lt;/a&gt; using his &lt;a href=&quot;http://jordan-wright.com/blog/2015/05/11/60-days-of-watching-hackers-attack-elasticsearch/&quot;&gt;ElasticHoney honeypot&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As of this point in time, there are still thousands of vulnerable instances in the wild, despite rather active exploitation and awareness of the vulnerability. &lt;a href=&quot;http://blog.malwaremustdie.org/2015/06/mmd-0034-2015-new-elf.html&quot;&gt;Most of the exploitation is dropping “ChinaZ.DDoS” or “XOR.DDoS” malware&lt;/a&gt;, among other variants. These are the ‘Chinese’ DDoS bots I mentioned before. This appears to indicate that a large number of organizations have completely failed to update their (outdated) ElasticSearch instances.&lt;/p&gt;
+
+&lt;p&gt;If you rely on ElasticSearch, and your ES instance is exposed to the internet, and you are running a version before 1.4.3, well, I got bad news for you - your box is hosed, as is everything connected to it. Time to burn that all down and start again. Just because a bug is not in the news this week, does not make it any less of a threat.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Tracking down spies C&C infrastructure for shits and giggles</title>
+   <link href="http://localhost:4000/security/espionage/malware/shodan/2015/07/08/Identifying-and-Fingerprinting-C2-Infrastructure/"/>
+   <updated>2015-07-08T14:37:00+01:00</updated>
+   <id>http://localhost:4000/security/espionage/malware/shodan/2015/07/08/Identifying-and-Fingerprinting-C2-Infrastructure</id>
+   <content type="html">&lt;p&gt;This is a quick post to splainz the methodology behind how we were able to make fingerprints for the Hacking Team and Equation Group C&amp;amp;C infrastructure allowing remote identification of their servers, as shown in &lt;a href=&quot;https://github.com/0x27/TheItalianJob&quot;&gt;The Italian Job&lt;/a&gt; and &lt;a href=&quot;https://github.com/0x27/EquationSmasher&quot;&gt;Equation Smasher&lt;/a&gt; releases on Github.&lt;/p&gt;
+
+&lt;p&gt;Myself and &lt;a href=&quot;https://twitter.com/_ta0&quot;&gt;March&lt;/a&gt;, the rootkit wizard, have been at this kind of thing for quite some time, and have had a great deal of success in enumerating and identifying C&amp;amp;C infrastructure based on various oddities in how they present themselves. A fine example of this was in our &lt;a href=&quot;http://insecurety.net/?p=729&quot;&gt;Hunting Red October&lt;/a&gt; work prior (which resulted in the “asdic.pl” and “sonar.py” scripts).&lt;/p&gt;
+
+&lt;p&gt;Basically, here is a TL;DR on how you, too, can hunt down shitbag spies and other such nasties.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-1-get-samples-of-the-malware-andor-ips-of-some-still-active-cc-servers&quot;&gt;Step 1: Get samples of the malware and/or IP’s of some still active C&amp;amp;C servers.&lt;/h2&gt;
+&lt;p&gt;This is often trivial. Once someone publishes a report, or you get some nasty malware, identify the C&amp;amp;C server (run it in a sandbox or whatever and sniff those sweet, sweet pacotes).&lt;/p&gt;
+
+&lt;h2 id=&quot;step-2-muck-about-with-the-cc-server&quot;&gt;Step 2: Muck about with the C&amp;amp;C server.&lt;/h2&gt;
+&lt;p&gt;Next up, do a portscan of the C&amp;amp;C server(s). Of particular interest is the callback port. You want to fiddle with that port/service a bit and see if it returns a “weird” or unique banner or response, that you can chuck into &lt;a href=&quot;https://shodan.io&quot;&gt;shodan&lt;/a&gt; and try identify similar servers.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-3-fuck-with-related-hosts&quot;&gt;Step 3: Fuck with related hosts&lt;/h2&gt;
+&lt;p&gt;The third step is fairly simple. Once you have a list of hosts that also act in the same fashion and “smell” the same (much of this is based on scientific jiggerypokery and general faffing about with them), you portscan those and look for further similarities. Most oftentimes, C&amp;amp;C infrastructure is “cloned” across hosts, so they all will be set up in the same fashion.&lt;/p&gt;
+
+&lt;h2 id=&quot;optional-step-4-scan-the-planet&quot;&gt;Optional Step 4: Scan the Planet&lt;/h2&gt;
+&lt;p&gt;Optionally, here you can scan the entire planet with masscan or zmap looking for similar hosts that Shodan’s crawler might not have hit yet. This gives you a nice list of IP’s to compare against netflow logs and also to bang into online sandboxes/AV things to see if theres other samples out there calling back, so you can gather more information and link samples/campaigns together.&lt;/p&gt;
+
+&lt;h2 id=&quot;optional-step-5-hack-the-planet&quot;&gt;Optional Step 5: Hack the Planet&lt;/h2&gt;
+&lt;p&gt;I have NOT engaged in this hypothetical step, and cannot legally advocate for it, however others such as &lt;a href=&quot;https://malware.lu/assets/files/articles/RAP002_APT1_Technical_backstage.1.0.pdf&quot;&gt;Malware.lu in the case of APT-1&lt;/a&gt; (warning: PDF link) have done so. Somehow procure a copy of the C&amp;amp;C software in question, fuzz the shit out of it, find some bugs, and own the spying bastards, preferably uninfecting their victims and burning their infrastructure to the ground. I include this step for completeness only, and to point out that there is some recourse to be had.&lt;/p&gt;
+
+&lt;p&gt;Good sources of &lt;del&gt;DDoS numbers&lt;/del&gt; IP addresses/C&amp;amp;C hosts to initially target for, er, interrogation are reports from &lt;a href=&quot;https://citizenlab.org/&quot;&gt;Citizen Lab&lt;/a&gt; and AV vendors on the latest and lamest surveillance campaigns. Also, because some espionage campaigns are cheapskates, obtaining copies of widely (ab)used RAT software sold/used by &lt;del&gt;APT’s&lt;/del&gt; script kiddies (such as Poison Ivy/BlackShades/DarkComet) and analysing those examples is also a fine way to find new, exciting fingerprints (and vulnerabilities…) to go forth and ruin some attackers days.&lt;/p&gt;
+
+&lt;p&gt;Further note: If the malware uses a web based (say, written in PHP) web panel, you might be able to fingerprint on HTTP titles or figure out a google-dork or other way of identifying the panel. Think of web panels as vulnerable webapps and apply the same thinking to locating and finding vulnerabilities in them. Quite often the bit of the web panel (the “gate”) that the implant calls back to fails miserably at sanitizing inputs to databases or file outputs, so there are often some gloriously exploitable bugs there. See the &lt;a href=&quot;https://malware.lu/articles/2012/05/21/analysis-and-pownage-of-herpesnet-botnet.html&quot;&gt;Herpesnet teardown/ownage by malware.lu&lt;/a&gt; for some ideas on that :)&lt;/p&gt;
+
+&lt;p&gt;Have fun, and be safe. Remember kids - when fucking with C&amp;amp;C’s/malware, practice safe hex and wear your balaclavas!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Installing DDK (documentation for the KCL Our Data Ourselves Class)</title>
+   <link href="http://localhost:4000/2015/05/16/Starting-DDK/"/>
+   <updated>2015-05-16T00:00:00+01:00</updated>
+   <id>http://localhost:4000/2015/05/16/Starting-DDK</id>
+   <content type="html">&lt;h1 id=&quot;starting-the-droiddestructionkit&quot;&gt;Starting the DroidDestructionKit&lt;/h1&gt;
+&lt;p&gt;The following set of instructions will guide you in how to get the DroidDestructionKit toolset up and running on your machine once you have the Virtual Machine Appliance imported into 
+your installation of Virtualbox.&lt;/p&gt;
+
+&lt;h2 id=&quot;starting-the-virtual-machine&quot;&gt;Starting the Virtual Machine&lt;/h2&gt;
+&lt;p&gt;When you click “start” on the Virtual machine, you will have to wait a minute or two for it to boot up. Once it is at a logon prompt, enter the username “odo” and password “ddk”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/starting_ddk/login.png&quot; alt=&quot;My helpful screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;starting-the-docker-daemon&quot;&gt;Starting the Docker Daemon&lt;/h2&gt;
+&lt;p&gt;Once logged in, you will have a command prompt. Type in the command “screen -S docker”, hit “enter”, and wait a moment. Next type “sudo docker -d” to start the daemon, followed by the 
+password (ddk). Once you see a message about it starting up, hold “CTRL” and press “A” and “D” in quick succession to detatch from the screen session.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/starting_ddk/screen start.png&quot; alt=&quot;My helpful screenshot&quot; /&gt;
+&lt;img src=&quot;http://localhost:4000/images/starting_ddk/start daemon.png&quot; alt=&quot;My helpful screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;starting-the-docker-container&quot;&gt;Starting the Docker Container&lt;/h2&gt;
+&lt;p&gt;You now need to change into the “DroidDestructionKit” directory where the Docker container is stored. To do this, use the command “cd DroidDestructionKit”. To start the Docker 
+container, run “sudo ./runcontainer.sh”, followed by the password (ddk). After a moment, you will be met with a root@ prompt. You can use this to use the Docker container if you are 
+familiar with the Linux commandline, however, you will also have graphical access.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/starting_ddk/start ddk.png&quot; alt=&quot;My helpful screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;accessing-the-gui-via-novnc&quot;&gt;Accessing the GUI via noVNC&lt;/h2&gt;
+&lt;p&gt;From your host computers web browser, navigate to “http://127.0.0.1:6080/” and wait for NoVNC to initialize. You will now be at the desktop of your virtualized machine containing all 
+the tools you need to get started decompiling and exploring Android Applications.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/starting_ddk/vnc started.png&quot; alt=&quot;My helpful screenshot&quot; /&gt;&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>ImgurScrot Release</title>
+   <link href="http://localhost:4000/projects/python/imgur/2015/03/29/ImgurScrot/"/>
+   <updated>2015-03-29T03:00:00+01:00</updated>
+   <id>http://localhost:4000/projects/python/imgur/2015/03/29/ImgurScrot</id>
+   <content type="html">&lt;p&gt;So, bit of code I wrote while halfway going mad arguing with API’s at &lt;a href=&quot;https://www.brumhack.co.uk/&quot;&gt;BrumHack&lt;/a&gt; in order to retain my sanity a little. This really, really, simple piece of code basically 
+just takes a screenshot using &lt;a href=&quot;https://pypi.python.org/pypi/pyscreenshot&quot;&gt;PyScreenshot&lt;/a&gt; and uploads it to &lt;a href=&quot;https://imgur.com&quot;&gt;imgur&lt;/a&gt; using the &lt;a href=&quot;https://api.imgur.com&quot;&gt;imgur api&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now, to use it, just run it. You will need “pyscreenshot” and “requests” installed, which are both available via Pip. The rest is stdlib python. All it does is take a screenshot, 
+upload to imgur, and print the URL you can access the image. Grab it from &lt;a href=&quot;https://github.com/0x27/imgurscrot&quot;&gt;github here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I guess I will first take the time to explain how the python screenshot library is used. See the following commented code block to see how it does its magic.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pyscreenshot&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pyscrot&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# import pyscreenshot module as pyscrot.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pyscrot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# grab the full screen and store the PNG screenshot into the image variable where its kept as a PIL object&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;screenshot.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# save it to the file screenshot.png in CWD.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Nothing complex about this, if you are interested in the hows and whys of the pyscreenshot modules inner workings, I suggest you have a look at its source code or something.&lt;/p&gt;
+
+&lt;p&gt;Obviously, we want to store our image for just long enough to upload it, and writing a tempfile as I originally did is really ugly and tends to be non portable across platforms as 
+tempfile locations vary. So… We want our image as base64, in order to upload it. How do we do this…&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pyscreenshot&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pyscrot&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# import pyscreenshot module as pyscrot.&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;base64&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# import the base64 module&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;StringIO&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# import everything from StringIO&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pyscrot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grab&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# grab the full screen and store the PNG screenshot into the image variable where its kept as a PIL object&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;imgstr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;StringIO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# create a StringIO object named imgstr&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imgstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# save the image to the StringIO object (treating it like a file)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;b64image&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base64&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;standard_b64encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imgstr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# base64 the string stored in the imgstr object :)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now, because the &lt;a href=&quot;https://github.com/Imgur/imgurpython/&quot;&gt;python imgur library&lt;/a&gt; seems to be hideously broken at the moment and I simply could not get the bastard thing to work even with its own samples, I simply 
+decided to use &lt;a href=&quot;https://pypi.python.org/pypi/requests&quot;&gt;python-requests&lt;/a&gt; to manually make my API calls. Seeing as we are just uploading images anonymously, the only thing we give a shit about is the fact we 
+can, er, upload a screenshot.&lt;/p&gt;
+
+&lt;p&gt;In order to upload the screenshot, we need to send an Authorization header with our ClientID in it, as part of a POST request containing the base64 encoded image and a title for it. We 
+get back a JSON response containing the URL to our image. In this example, our “image title” is Screenshot-&lt;current time=&quot;&quot; and=&quot;&quot; date=&quot;&quot;&gt;.png&lt;/current&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;json&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;requests&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;time&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;client_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OUR_CLIENT_ID&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Authorization'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Client-ID '&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# authorization header.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'image'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b64image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'title'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Screenshot-&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strftime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;H:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;M:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;S-&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;d/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;m/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Y&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))}&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# our image as base64 data as the &quot;image&quot; var, title as... title var.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://api.imgur.com/3/upload.json&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# send the request&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loads&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# load the json response as ... json&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'data'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'link'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# print the link to image stored in the json response&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Well, that concludes the explaination of how it works. Have fun :)&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>RelayCheck Release</title>
+   <link href="http://localhost:4000/tor/python/paramiko/projects/2015/03/25/RelayCheck/"/>
+   <updated>2015-03-25T13:37:00+00:00</updated>
+   <id>http://localhost:4000/tor/python/paramiko/projects/2015/03/25/RelayCheck</id>
+   <content type="html">&lt;p&gt;This blog post is announcing the release of a tool I wrote called &lt;a href=&quot;https://github.com/0x27/relaycheck&quot;&gt;RelayCheck&lt;/a&gt;, a simple utility for testing if ones &lt;a href=&quot;https://torproject.org&quot;&gt;Tor&lt;/a&gt; relays are up/down and for giving 
+them a good ole kill -HUP every now and then to keep it fresh.&lt;/p&gt;
+
+&lt;p&gt;I wrote this when in the past week due to reasons as yet undiagnosed, three of &lt;a href=&quot;http://0x27.me/tor/&quot;&gt;my tor relays&lt;/a&gt; decided to shit themselves and crash for seemingly no reason. I only noticed 
+when looking up how much bandwidth they offer, so I wrote this script so I could check on a whim from the commandline with ease. This blog post will outline the fairly simple details 
+of the whole shebang.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h1&gt;
+&lt;p&gt;Well, to put it simply, it reads in details of your nodes from a JSON configuration file (either in your homedir, as ~/.relaycheck.conf, or specified on commandline), uses SSH to 
+connect to them, and checks if Tor is running or sends a HUP command to restart Tor. I only have tested it against Debian hosts, as I don’t run any CentOS boxes due to an ingrained 
+hatred for everything RHEL. I can always add support for that if needed though :)&lt;/p&gt;
+
+&lt;h1 id=&quot;json-configuration-file&quot;&gt;JSON Configuration File&lt;/h1&gt;
+&lt;p&gt;The vital part of this is the JSON configuration file, which the format for is outlined below.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Example JSON format for the configuration. Note, this assumes you have the same private&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# key across all hosts. I will alter it later to use differing privkeys and allow for&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# .torrc updating and shit once I can be arsed.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# &amp;gt;&amp;gt;&amp;gt; for host in configuration['hosts']:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ...     print host['relayname']&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# :)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;hosts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;user&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;root&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;port&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;22&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;127.0.0.1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;relayname&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Example&quot;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;user&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;root&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;port&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;23&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;127.0.0.2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;relayname&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Example2&quot;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see, it contains a list called “hosts”, containing “host” objects which are dictionaries describing the “user”, “port”, “host” an “relayname”. The “user”, “port” and “host” 
+are details for SSH to connect to, and the “relayname” is so you can see which relays are up/down using their friendly nicknames as opposed to their DDoS numbers.&lt;/p&gt;
+
+&lt;p&gt;Its fairly straightforward, it does, however, assume you have the same authorized key across all the hosts, stored in ~/.ssh/relay.key. I should get around to changing this at a later 
+date :)&lt;/p&gt;
+
+&lt;h1 id=&quot;ssh-bits&quot;&gt;SSH bits&lt;/h1&gt;
+&lt;p&gt;I use Paramiko for the SSH component, as it is native python and available via pip or the package manager on virtually any sane OS/distro. I simply am using it to execute commands at 
+the moment such as “ps aux | grep tor”, “service tor status” and “kill -HUP $(pidof tor)”. I will add more functionality such as downloading logfiles and suchlike later when I can be 
+bothered to do so using its builtin SCP functionality :)&lt;/p&gt;
+
+&lt;p&gt;It should be noted I only am supporting public key based auth with unprotected privatekeys at the moment, I might add support for password based authentication in a later version 
+which will maybe require redoing the JSON spec and breaking compatibility possibly. I also hope to add support for protected private keys in the near future once I work out how. 
+However, fuck password based auth, its stupid. Public key based authentication is far superior. I have no plans as yet to support various 2FA mechanisms such as duosec or similar.&lt;/p&gt;
+
+&lt;h1 id=&quot;using-it&quot;&gt;Using it.&lt;/h1&gt;
+&lt;p&gt;RelayCheck, currently, has two modes. “restart”, and “status”. The “restart” mode will just send a HUP to all tor instances on the nodes, and “status” will check if tor is running and 
+tell you if so. Positionally, the “mode” is the first argument. The optional second argument is for a configuration file if you have not got one installed into your home directory 
+under ~/.relaycheck.conf.&lt;/p&gt;
+
+&lt;p&gt;I guess the best way to see how it runs is to watch this &lt;a href=&quot;https://asciinema.org/a/17999&quot;&gt;ASCIICast Demonstration&lt;/a&gt; showing how it is working in the wild :D&lt;/p&gt;
+
+&lt;h1 id=&quot;bugs&quot;&gt;Bugs&lt;/h1&gt;
+&lt;p&gt;Use the issue tracker for feature requests, suggestions, and bugs.&lt;/p&gt;
+
+&lt;p&gt;Well, that concludes this software release. Don’t forget to run your own tor relay and RTFM :D&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Some Site Updates</title>
+   <link href="http://localhost:4000/2015/03/21/Updates/"/>
+   <updated>2015-03-21T00:00:00+00:00</updated>
+   <id>http://localhost:4000/2015/03/21/Updates</id>
+   <content type="html">&lt;p&gt;Quick thing of updates for the site.&lt;br /&gt;
+Firstly, I have updated &lt;a href=&quot;http://0x27.me/talks/&quot;&gt;talks&lt;/a&gt; to contain the &lt;a href=&quot;http://bsideshn.org&quot;&gt;BSides Hannover&lt;/a&gt; material, which is also accessable on the &lt;a href=&quot;https://github.com/XiphosResearch/MoovMisManage&quot;&gt;Github repo&lt;/a&gt;. &lt;br /&gt;
+I also have added a &lt;a href=&quot;http://0x27.me/tor/&quot;&gt;page listing my tor nodes&lt;/a&gt;, for transparency reasons, along with updating my contact information on the &lt;a href=&quot;http://0x27.me/about/&quot;&gt;about page&lt;/a&gt;.&lt;br /&gt;
+We also now have a &lt;a href=&quot;http://0x27.me/PoCorGTFO/&quot;&gt;PoC||GTFO mirror&lt;/a&gt;, I strongly encourage you host one too!&lt;br /&gt;
+Some new updates coming soon, including a tutorial on getting that sweet sweet z/OS up and running on a Linux laptop, which would be impossible without the help of &lt;a href=&quot;https://twitter.com/mainframed767&quot;&gt;Soldier of 
+Fortran&lt;/a&gt;, launch of a fun new service or two, and migration of some old content across.
+Finally, my exploit development stuff is all being pushed to the &lt;a href=&quot;https://github.com/XiphosResearch/exploits&quot;&gt;Xiphos Research Exploits Repository&lt;/a&gt;, my own fork is used for testing and such and is not exactly stable 
+at all, so if you want stable exploits, go for the Xiphos one, which is the “release master” repository :)&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Writing (Basic) IRC Scripts in Python</title>
+   <link href="http://localhost:4000/python/irc/hexchat/irssi/programming/2015/03/16/Writing-IRC-Scripts-In-Python/"/>
+   <updated>2015-03-16T00:00:00+00:00</updated>
+   <id>http://localhost:4000/python/irc/hexchat/irssi/programming/2015/03/16/Writing-IRC-Scripts-In-Python</id>
+   <content type="html">&lt;p&gt;This post is intended to be a gentle introduction into the fine and glorious art of writing IRC scripts (for irssi and hexchat, weechat is on the way) in the Python programming language. In this, you will be walked through, line by line, the “shakespeare.py” plugin for various IRC clients that I wrote out of 
+sheer boredom and a desire to insult people on IRC ye olde style.&lt;/p&gt;
+
+&lt;p&gt;Hopefully, the following will be comprehensible to all readers, as I try explain every last bit of it so even the total beginner to Python or Computer Science III in general can get 
+the gist of it :)&lt;/p&gt;
+
+&lt;h2 id=&quot;general-stuff&quot;&gt;General Stuff&lt;/h2&gt;
+&lt;p&gt;First off, lets cover some of the general purpose boilerplate crap used in all the scripts.&lt;/p&gt;
+
+&lt;h1 id=&quot;so-arrayslists-and-how-do-they-work&quot;&gt;So, arrays/lists, and how do they work…&lt;/h1&gt;
+&lt;p&gt;Arrays, or lists, in Python, are really simple. Now, I am not a computer scientist, just a bored hacker. So I make no distinction between an array and a list as they look the same to me. Call me a pleb, but I give no fucks.&lt;/p&gt;
+
+&lt;p&gt;You basically have an array like the following:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now, you can probably see clearly that we can address this in a nice fashion.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;So we can select elements from our array and print them, without popping them from our array. We can also append items to our array, and remove them from our array, quite easily.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'4'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'4'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;'2'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'4'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see above, we appended ‘4’ to the array, and popped the first element (which was 2, rememeber, in programming we count from 0). This shows how simple it is to insert and delete items from an array or list. In our program, we make 3 arrays. Each including a bunch of “segments” for an insult.&lt;/p&gt;
+
+&lt;h1 id=&quot;random-selection&quot;&gt;Random Selection…&lt;/h1&gt;
+&lt;p&gt;In Python, we can easily do random selection with the module named “random”. to randomly select an item from an array, we will simply call the random.choice() function on the array which will return a random element from it.&lt;/p&gt;
+
+&lt;p&gt;An example follows:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'cat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'dog'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'mouse'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;random&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;mouse&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;dog&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In our scripts, we use this random selection mechanism to select a random item from each array to construct our insult.&lt;/p&gt;
+
+&lt;h1 id=&quot;building-our-insult-from-the-arrays&quot;&gt;Building our “Insult” from the arrays…&lt;/h1&gt;
+&lt;p&gt;In order to build our insult, we need a random element from each of the arrays, so we can build a string to send.&lt;/p&gt;
+
+&lt;p&gt;This is actually really, really, simple. See below.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;random&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'cat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'dog'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'mouse'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;words&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'has'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'is'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'was'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;emotion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'happy'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'sad'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'indifferent'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;emotion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;dog&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;indifferent&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;emotion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;was&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;happy&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;interesting-mathematics-on-how-many-insults-we-have&quot;&gt;Interesting Mathematics on how many insults we have…&lt;/h1&gt;
+&lt;p&gt;Now, you may note, that we have 50 insult pieces in each of the arrays. Now, unless I am mistaken (and email me if I am, maths is not my strong suit!), we can use the following maths to work out some shit.&lt;br /&gt;
+P(n,r) = number of permutations&lt;br /&gt;
+P(50,3) = number of permutations&lt;br /&gt;
+50! / (50 - 3)! = number of permutations&lt;br /&gt;
+Number of Permutations = 117600&lt;/p&gt;
+
+&lt;p&gt;So hypothetically, we can fire off 117,600 unique insults!&lt;/p&gt;
+
+&lt;h2 id=&quot;irssi-specific-stuff&quot;&gt;irssi specific stuff&lt;/h2&gt;
+
+&lt;h1 id=&quot;installing-irssi-python-for-development&quot;&gt;Installing irssi-python for development&lt;/h1&gt;
+&lt;p&gt;First off, don’t even bother. Just spin up an Arch box, install yaourt, and install it from the fucking AUR. I wasted an entire day trying to get it to build on 2 different Debian 
+boxes, and had absolutely no luck. The command to install irssi and irssi-python is as follows. You are more than welcome to try getting it working on Debian or whatever, but be 
+warned, you might find yourself jumping off the nearest tall structure before long, due to the sheer amount of fuckery involved.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;yaourt -S irssi-python irssi&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;how-irssi-scripts-accept-arguments&quot;&gt;How irssi scripts accept arguments&lt;/h1&gt;
+&lt;p&gt;IRSSI scripts are a bit fucking wierd in how they accept their arguments. They basically seem to accept them all as “data”.&lt;/p&gt;
+
+&lt;p&gt;See the following:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;cmd_insult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;witem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# snip&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;MSG &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;witem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# snip&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Note how “data” is the first argument passed. This seems to be “all the arguments given to the command”, as “server” and “witem” are built in (the current server, and current window name). Data is effectively a string object of arguments that I strongly suspect parsing is left to the user.&lt;/p&gt;
+
+&lt;h1 id=&quot;sending-messages-to-channel&quot;&gt;Sending messages to channel&lt;/h1&gt;
+&lt;p&gt;In the above code snippet, you will have noticed the “server.command” function being called. This function sends a raw IRC command to the server. So to send a message to a channel, we must send “MSG &lt;channel&gt; &lt;our message=&quot;&quot;&gt;&quot;. This is rather simple, at least!&lt;/our&gt;&lt;/channel&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;binding-commands-to-functions-in-irssi&quot;&gt;Binding commands to functions in irssi&lt;/h1&gt;
+&lt;p&gt;The final bit of importance is how the command is bound in the script, and this is really fucking simple in IRSSI. You simply do the following at the end of your script.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;irssi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command_bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'shakespeare'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmd_insult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;this binds the command “shakespeare” to the function “cmd_insult”, and calls said function whenever the “shakespeare” command is called.&lt;/p&gt;
+
+&lt;h1 id=&quot;installing-and-using-the-script&quot;&gt;Installing and using the script&lt;/h1&gt;
+&lt;p&gt;To install, after nearly shooting yourself in the face during the compiling hell that is irssi-python, just move shakespeare.py to ~/.irssi/scripts and add “py load shakespeare” to your ~/.irssi/startup somewhere after “load python”.&lt;/p&gt;
+
+&lt;p&gt;To use, just do /shakespeare to insult no one in particular (the open query window), or /shakespeare $nick to insult a specific user in the current channel.&lt;/p&gt;
+
+&lt;h2 id=&quot;hexchat-specific-stuff&quot;&gt;Hexchat Specific Stuff&lt;/h2&gt;
+
+&lt;h1 id=&quot;installing-hexchat&quot;&gt;Installing Hexchat&lt;/h1&gt;
+&lt;p&gt;Hexchat comes with the Python support built in. So… You just install Hexchat, using yaourt/pacman on Arch (I prefer yaourt), or apt on Debian. Those of you on Fedora and other 
+“things I don’t use” are on your own here. As for the Mac users… I guess homebrew or something?&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;yaourt -S hexchat
+sudo apt-get install hexchat&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;module-information-and-suchlike-in-hexchat-scripts&quot;&gt;Module information and suchlike in Hexchat scripts&lt;/h1&gt;
+&lt;p&gt;Hexchat is fucking wierd. You have to intiialize your script with a load of boilerplate bollocks giving the name, version, and description of your script. Otherwise it may complain or something. Anyways, that bullshit looks like this.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;__module_name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;shakespeare&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;__module_version__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1.0&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;__module_description__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Shakespearean Insult Generator&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;how-hexchat-seems-to-accept-arguments&quot;&gt;How Hexchat seems to accept arguments&lt;/h1&gt;
+&lt;p&gt;Now, this is something I have not worked out, exactly. It kind of works. Sometimes. Sorta. Well, it takes arguments as “word”, similar to “data”, except, in what I think is kind of a neat feature, it treats them as an addressable list like sys.argv. So your initial command would be word[0], and first argument word[1], and so on. See the following example.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# we count from 0 in args, but from 1 here. fucked if I know.&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;hexchat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;MSG &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;hexchat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;MSG &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# see we address arg[1] basically.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;sending-messages-to-channel-1&quot;&gt;Sending messages to channel&lt;/h1&gt;
+&lt;p&gt;In the above code snippet, you will have noticed the “hexchat.command” function being called. This function sends a raw IRC command to the server. So to send a message to a channel, we must send “MSG &lt;channel&gt; &lt;our message=&quot;&quot;&gt;&quot;. This is rather simple, at least!&lt;/our&gt;&lt;/channel&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;binding-commands-to-functions-in-hexchat&quot;&gt;Binding commands to functions in Hexchat&lt;/h1&gt;
+&lt;p&gt;The final bit of importance is how the command is bound in the script, and this is really fucking simple in Hexchat as well. You simply do the following at the end of your script.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;hexchat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hook_command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;shakespeare&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmd_insult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;this binds the command “shakespeare” to the function “cmd_insult”, and calls said function whenever the “shakespeare” command is called.&lt;/p&gt;
+
+&lt;h1 id=&quot;installing-and-using-the-script-1&quot;&gt;Installing and using the script&lt;/h1&gt;
+&lt;p&gt;Drop it into your “addons” directory in Hexchat, and load it with “/py load shakespeare.py” or add to autoload. Reasonably painless to make work, compared to the absolute motherfuckery that was configuring irssi-python.&lt;/p&gt;
+
+&lt;p&gt;To use, just do /shakespeare to insult no one in particular (the open query window), or /shakespeare $nick to insult a specific user in the current channel.&lt;/p&gt;
+
+&lt;h2 id=&quot;source-codes-references&quot;&gt;Source Codes, references.&lt;/h2&gt;
+&lt;p&gt;You can find the source code for the &lt;a href=&quot;https://github.com/0x27/irssi-shakespeare-insult&quot;&gt;IRSSI Shakespearean Insult Script Here&lt;/a&gt;, and source for the &lt;a href=&quot;https://github.com/0x27/hexchat-shakespeare-insult&quot;&gt;Hexchat Shakespearean Insult Script Here&lt;/a&gt;. &lt;a href=&quot;https://hexchat.github.io/&quot;&gt;Hexchat&lt;/a&gt; and &lt;a href=&quot;http://www.irssi.org/&quot;&gt;IRSSI&lt;/a&gt; are available at their respective websites, and the &lt;a href=&quot;https://github.com/mahmoudimus/irssi-python&quot;&gt;irssi-python&lt;/a&gt; plugin is also available. Documentation for the various clients and such are available on their respective websites.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Using the Python 'getpass' module</title>
+   <link href="http://localhost:4000/python/getpass/2015/03/15/Using-Python-Getpass/"/>
+   <updated>2015-03-15T20:54:34+00:00</updated>
+   <id>http://localhost:4000/python/getpass/2015/03/15/Using-Python-Getpass</id>
+   <content type="html">&lt;p&gt;Clifford Sullivan (@cliffsull on twitter) recently asked how to go about safely accepting password input from an interactive program in python.&lt;/p&gt;
+
+&lt;p&gt;As you may know, password inputs are generally “masked”, so the password is not echoed back to the screen. This is “kind of fucking important” as an attempt at defending against shoulder surfers and other evildoers.&lt;/p&gt;
+
+&lt;p&gt;Anyway, in python, there is a module named “getpass” that serves this exact purpose. It is part of the python standard library, so no need to go pip installing it or anything just yet.&lt;/p&gt;
+
+&lt;p&gt;I figured it might be useful to make note of it here just so you can see how trivial it is to safely accept user input, and perhaps write a demo app using python-paramiko showing how this might be used in practice.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python2&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+Example use of &quot;getpass&quot; in python to accept user input
+of sensitive information such as passwords without echoing
+them back to the screen.
+
+Example Run:
+$ python test.py 
+Example Getpass Use Script
+Input Your Credentials (password will not be echoed)
+USER: this is a test username
+PASS: 
+Printing Your Credentials
+{+} USER: this is a test username
+{+} PASS: this is a test password
+$
+
+As you can see, the &quot;password&quot; input did not echo back
+my input. This is useful as it prevents against shoulder
+surfers and such evil creatures (well, assuming they dont
+just look at the bloody keys you are pressing!!)
+
+- infodox
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;getpass&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# import getpass module&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Example Getpass Use Script&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Input Your Credentials (password will not be echoed)&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;raw_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;USER: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# doesnt matter if we echo username so use raw_input()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getpass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;PASS: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# use getpass to get passwd without echoing it back&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Printing Your Credentials&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;{+} USER: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# print username&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;{+} PASS: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# print the password&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now, to show use with Paramiko, say we want to write a program that logs into a remote host, checks uptime, and displays the uptime for you.&lt;/p&gt;
+
+&lt;p&gt;In this example, we use raw_input to do this. raw_input is not a good idea for accepting passwords as it echoes back to the terminal, but it is fine for usernames.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python2&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;paramiko&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run_ssh_cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;passwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;paramiko&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SSHClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_missing_host_key_policy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;paramiko&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AutoAddPolicy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;(+) Connecting via SSH to &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;passwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;paramiko&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AuthenticationException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(-) Password or username incorrect!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(-) Connection Failed perhaps?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stdin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stderr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exec_command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;raw_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;host: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;raw_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;user: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;raw_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pass: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;command&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;uptime&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;(*) Running &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s on &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;run_ssh_cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;passwd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;See? it echoes back to the terminal!&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;python ssh_exec_insecure.py
+host: 127.0.0.1
+user: packetforger
+pass: lolpassword
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Running uname on 127.0.0.1
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;+&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Connecting via SSH to 127.0.0.1
+Linux
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;So instead, we use getpass.getpass to do this, and it is a far more safe way to accept the password.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python2&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;paramiko&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;getpass&lt;/span&gt;
+ 
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run_ssh_cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;passwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;paramiko&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SSHClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_missing_host_key_policy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;paramiko&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AutoAddPolicy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;(+) Connecting via SSH to &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;passwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;paramiko&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AuthenticationException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(-) Password or username incorrect!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(-) Connection Failed perhaps?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stdin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stderr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exec_command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;
+ 
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;raw_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;host: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;raw_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;user: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getpass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pass: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;command&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;uptime&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;(*) Running &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s on &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;run_ssh_cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;passwd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;
+ 
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see, it does NOT echo back the password to the terminal!&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;python ssh_exec_secure.py
+host: 127.0.0.1
+user: packetforger
+pass:
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Running uname on 127.0.0.1
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;+&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Connecting via SSH to 127.0.0.1
+Linux
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Hopefully you will understand the point of all this, and use safer ways to accept user input into your applications :)&lt;/p&gt;
+
+&lt;p&gt;Footnote: Currently importing old stuff from old blogs and stuff to one centralized location, which is why you may recognise this from elsewhere. Little identity crisis caused a fragmenting of online presence :P&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Oxidation of Borneol to Camphor</title>
+   <link href="http://localhost:4000/chemistry/science/writeups/2015/03/13/Oxidation-Of-Borneol-To-Camphor/"/>
+   <updated>2015-03-13T20:54:34+00:00</updated>
+   <id>http://localhost:4000/chemistry/science/writeups/2015/03/13/Oxidation-Of-Borneol-To-Camphor</id>
+   <content type="html">&lt;p&gt;I was not going to bother posting this up, as it lacks in pretty pictures, but ah well. Ended up publishing it on one of the forums and figured it was worth hosting here… I decided to be a bit more “descriptive” to make up for the lack of pictures!&lt;/p&gt;
+
+&lt;h2 id=&quot;part-1-oxidation-of-borneol-to-camphor&quot;&gt;Part 1: Oxidation of Borneol to Camphor.&lt;/h2&gt;
+
+&lt;p&gt;Oxidation reactions are useful mechanisms for converting one functional group in an organic compound to another. Notably, the conversion of 1* alcohols to aldehydes or acids, and conversion of 2* alcohols to ketones.&lt;/p&gt;
+
+&lt;p&gt;You can also do things like oxidize an amine to a nitro group (I was never able to confirm this, as back then I did not have a FTIR at my disposal, but I believe it worked, your mileage may vary - some experimental procedures use this route), and the likes.&lt;/p&gt;
+
+&lt;p&gt;Oxidation occurs when protons (Hydrogen) is stripped away from a compound, often replacing it with oxygen. Hence oxidation. We use an oxidizing agent to perform this.&lt;/p&gt;
+
+&lt;p&gt;In this experiment, we use H&lt;sub&gt;2&lt;/sub&gt;SO&lt;sub&gt;4&lt;/sub&gt;/Na&lt;sub&gt;2&lt;/sub&gt;Cr&lt;sub&gt;2&lt;/sub&gt;O&lt;sub&gt;7&lt;/sub&gt; as our oxidizing agent, to convert Borneol (a secondary alcohol) to Camphor (a ketone). This is a strong oxidizing agent, and also a suspected carcinogen, so it must be
+handled with care. Spills of such material are a serious hazard [1].&lt;/p&gt;
+
+&lt;h2 id=&quot;experimentalcooking-jesse-we-need-to-cook&quot;&gt;Experimental/Cooking (Jesse! We need to cook!):&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;2 grams of sodium dichromate were dissolved in 8ml distilled water, and slowly ~1.6ml of concentrated sulphuric acid was added. I may have used a slight excess of acid due to being distracted. This was left in the ice bath to cool.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;0.9870 grams of borneol was weighed out carefully on an analytical balance. It should have been a gram, but I was in a hurry as there were only 4 balances, and 17 people vying for them, so I was urged to “hurry the hell up”. This was dissolved in 5ml of diethylether in a 25ml erlenmeyer flask, and stirred. You would not believe how much of a pain in the arse it is to dissolve such a tiny amount of stuff in a tiny bloody container. The instructions called for 4ml of the ether, but an extra 1ml was used to wash borneol stuck to sides of it in. This was left in the ice bath to cool. At this point, a few sachets of salt were added to the ice to help with cooling.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Over the course of approximately 10 minutes, 6ml of the oxidizing solution was added to the borneol/ether solution with stirring and cooling to keep it chilled. After the addition was completed, further stirring/swirling/swearing was done for about 5 minutes.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The mixture was put into a seperatory funnel of capacity 150ml, with the flask rinsed a few times with small amounts of ether and water to get all of the material into the seperatory funnel. Some more water (10ml or so) was added to the seperatory funnel. This was done very carefully, again, see [1] for why. The seperatory funnel was vigorously shaken with repeated venting to prevent it exploding from pressure (having seen this happen before), and left on a retort stand to settle.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Once settled, the lower aqueous layer was drained off into one container. The ether layer was then transferred to a small beaker.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The aqueous layer was put back into the sep. funnel, some more ether added (around 15ml), and again shaken, swirled, vented, and let settle. The ether layer was combined with the other ether layer in the small beaker. This was repeated again (aqueous layer returned and separated, keeping ether layers together) a total of 4 times. Instructions specified 2, but I was unhappy with the “colour” of the layers. This is hard to explain, but it “seemed right” based on experience separating/extracting mixtures.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The combined ether layers were put into the seperatory funnel (a fair bit of the ether had evaporated over time, reducing its volume a bit), and it was washed first with 20ml of water, twice with 20ml of 5% bicarb, and again twice with water. Each time, the ether layer was returned to the funnel, with “a bit” (2 pasteur pipette loads) of ether added each time.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The ether layer was placed into a clean, dry erlenmeyer flask, and a lot of magnesium sulphate added (heaped spatula loads), until it no longer formed clumps with considerable stirring, but remained as a powder. The MgSO&lt;sub&gt;4&lt;/sub&gt; was anhydrous/dry, and was there to absorb the water. It forms clumps with water, hence when no more clumps formed, it was considered dry.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The ether layer was filtered out and retained, the residue discarded. The ether layer was placed in a small evaporating dish and heated on a steam bath until the ether evaporated. This was a visually impressive spectacle (probably amplified by a nonfunctioning fumehood leading to inhalation of fumes…), with it “bubbling up” and forming “powder bubbles” as the last of the ether evaporated.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The crude camphor was then weighed.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Using a sublimation apparatus (which looks suspiciously like a piece of drug paphernalia), the camphor was purified by subliming/recrystallizing it. This was also incredibly visually impressive, the initial evaporation and condensation looked somewhat akin to the process that occurs in an incredibly well cooled waterpipe.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The sublimed/purified camphor was then weighed and analysed using the FT-IR machine, which, because the computer attached to it runs Windows XP Service Pack 1, took a few attempts to get it to “just bloody work” and give me a graph. The graph is attached as a photograph, lightly annotated (the C=O peak highlighted).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/irspecborneol2camphor.jpg&quot; alt=&quot;IR Spec&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;results&quot;&gt;Results:&lt;/h2&gt;
+&lt;p&gt;Mass Borneol Used: 0.9870g&lt;br /&gt;
+Theoretical Yield: 0.9805g&lt;br /&gt;
+Mass Camphor (Crude): 0.5281g&lt;br /&gt;
+Mass Camphor (Pure?): 0.4454g&lt;br /&gt;
+Actual Yield (Crude): 53.51%&lt;br /&gt;
+Actual Yield (Pure?): 45.13%&lt;br /&gt;
+Mm Borneol: 154.25g/mol&lt;br /&gt;
+Mm Camphor: 153.23g/mol&lt;/p&gt;
+
+&lt;h2 id=&quot;referencenotessilly-things&quot;&gt;Reference/Notes/Silly things:&lt;/h2&gt;
+&lt;p&gt;[1] The guy working beside me did not exercise due care while putting the reaction mixture into a seperatory funnel, forgetting to check was the bloody valve closed. As expected, the reaction mixture went absolutely fucking everywhere, making a strange “bubbling” as it hit the table (a plastic coating on the table I think?). The lab techs reacted in a fashion I would expect if he spilled pure bloody cyanide everywhere, decontaminating it with bicarb and such&lt;/p&gt;
+
+&lt;p&gt;Also, amusingly, the table is still stained despite repeated washings with bicarb, acetone, and water. Brown “burns” on the surface, which I suspect were caused by it being oxidized.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Statement of Solidarity With Torproject Anti Harassment Policy.</title>
+   <link href="http://localhost:4000/tor/security/privacy/politics/2014/12/13/Tor-Project-Anti-Harassment/"/>
+   <updated>2014-12-13T23:00:00+00:00</updated>
+   <id>http://localhost:4000/tor/security/privacy/politics/2014/12/13/Tor-Project-Anti-Harassment</id>
+   <content type="html">&lt;p&gt;I normally ignore &lt;a href=&quot;http://en.wikipedia.org/wiki/Gamergate_controversy&quot;&gt;drama on the internet&lt;/a&gt;, as it is mostly pointless noise. However, sometimes, some bullshit goes down that you simply cannot ignore, but have no idea what to do about.&lt;/p&gt;
+
+&lt;p&gt;What I am referring to, is the &lt;a href=&quot;http://charon.persephoneslair.org/~andrea/pandorasts/jeremy_becker/&quot;&gt;fucking ridiculous harassment&lt;/a&gt; of &lt;a href=&quot;https://www.torproject.org/about/corepeople.html.en&quot;&gt;torproject developers&lt;/a&gt; that has been going on for quite some time.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://www.torproject.org&quot;&gt;Tor Project&lt;/a&gt; do amazing things. They provide some of the most cutting edge research into low latency anonymity systems. They provide a public, volunteer ran, free, open source implementation of onion routing for &lt;a href=&quot;https://www.torproject.org/about/torusers.html.en&quot;&gt;everyone from activists to spooks to journos&lt;/a&gt; to use. This is an amazing service, and doubtlessly countless people owe their lives and continued liberty to the project.&lt;/p&gt;
+
+&lt;p&gt;However, not everyone likes the idea of online anonymity. Some people are very much against it, and like to threaten, harass, and try to intimidate Tor developers. Other idiots, being wholly incapable of rational thought, seem to be of the opinion the tor project is a government ran trap or honeypot - rumors that have gotten more common since &lt;a href=&quot;https://twitter.com/yashalevine&quot;&gt;some journo&lt;/a&gt; over at &lt;a href=&quot;http://pando.com/&quot;&gt;Pando&lt;/a&gt; decided to write a series of articles describing the Torproject as a government ran trap, in what, I must say, was one of the most horrifyingly awful examples of &lt;a href=&quot;http://pando.com/2014/07/16/tor-spooks/&quot;&gt;shit journalism&lt;/a&gt; I have seen in a good while. The idiot has not bothered try to repair the damage done, either, instead seemingly revelling in the shitstorm he has brought about, and generally pouring petrol on the fire.&lt;/p&gt;
+
+&lt;p&gt;Anyway. The Tor people have put up a &lt;a href=&quot;https://blog.torproject.org/&quot;&gt;statement against harassment&lt;/a&gt; and you might like to sign it. I have, maybe you can too? Perhaps we can send a message that says something along the lines of “fuck off mate, this bollocks isn’t fucking acceptable” to those who would harass those who do so much for us.&lt;/p&gt;
+
+&lt;p&gt;Stay classy, fellow Cyberians.&lt;/p&gt;
+
+&lt;p&gt;~skyhighatrist&lt;/p&gt;
+
+&lt;p&gt;Edit: Fucking lol. Some guy called Paul Carr published &lt;a href=&quot;http://pando.com/2014/12/10/its-time-for-tor-activists-to-stop-acting-like-the-spies-they-claim-to-hate/&quot;&gt;this pile of shite&lt;/a&gt; comparing tor to spooks. Anyway, thought whoever lands on this page might find it somewhat fucking hilarious, as it is simply adding more petrol to the fire. These Pando people really like escalation, don’t they…&lt;/p&gt;
+
+&lt;p&gt;Further edit of clarification: Yeah, I totally can get behind Andrea doxing the fuck out of some retard who was giving her shit. If someone is being a massive cock on the cybertubes, and they don’t stop, you are well within your rights to kick them square in the teeth by any means necessary. If you be a massive fucking bellend on the internet, especially to people with skills, expect some fucking retaliation when they get sick of your shit. So, yeah, I totally applaud Andrea taking matters into her own hands - its what I would have done. Its what a whole lot of you would have done as well, just you won’t fucking admit it (because its more fun to act all holier-than-thou).&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Proposal for a Key Revokation Procedure for Tor Hidden Services</title>
+   <link href="http://localhost:4000/tor/security/privacy/mistakes/2014/11/13/Tor-HS-Key-Revokation-Proposal/"/>
+   <updated>2014-11-13T23:00:00+00:00</updated>
+   <id>http://localhost:4000/tor/security/privacy/mistakes/2014/11/13/Tor-HS-Key-Revokation-Proposal</id>
+   <content type="html">&lt;h2 id=&quot;warning-03122014-this-proposal-was-based-on-a-flawed-understanding-of-the-dht-and-will-not-work-with-the-current-tor-implementation-thanks-to-donncha-for-pointing-out-that-i-had-made-some-pretty-fucking-idiotic-assumptions-however-i-am-leaving-it-up-incase-the-implementation-changes-in-future-or-whatever&quot;&gt;Warning (03/12/2014): This proposal was based on a flawed understanding of the DHT. And will not work with the current tor implementation. Thanks to &lt;a href=&quot;http://donncha.is/&quot;&gt;Donncha&lt;/a&gt; for pointing out that I had made some pretty fucking idiotic assumptions. However, I am leaving it up incase the implementation changes in future or whatever.&lt;/h2&gt;
+
+&lt;p&gt;Warning in advance: I am not a proper cryptographer, and I am not a tor developer. I am just some gobshite on the internet who is going to make some probably incredibly stupid statements in this short posting that might be of interest to people far more intelligent than myself. Also, this is not exactly providing much in the lines of “implementation”, it is merely chucking an idea out there for the clever fuckers to figure out the details of ;)&lt;/p&gt;
+
+&lt;p&gt;So in light of the recent &lt;a href=&quot;http://www.wired.com/2014/11/operation-onymous-dark-web-arrests/&quot;&gt;FBI/Europol takedowns of a number of tor hidden services&lt;/a&gt;, and subsequent &lt;a href=&quot;http://www.dailydot.com/politics/doxbin-dark-net/&quot;&gt;reseizure of the doxbin hidden service&lt;/a&gt; by persons unknown (nachash was &lt;a href=&quot;https://twitter.com/loldoxbin/status/531907010158419968&quot;&gt;quite adamant&lt;/a&gt; that it was not him, and that he had given the keys to an interested party), it suddenly came to mind that there might be a need for a key revokation mechanism for tor hidden services - similar to the &lt;a href=&quot;https://security.ias.edu/how-revoke-gnupgpgp-signature-key&quot;&gt;revokation method in use with PGP&lt;/a&gt;. Except, obviously, better.&lt;/p&gt;
+
+&lt;p&gt;Anyways. So onions are stored in a &lt;a href=&quot;https://www.torproject.org/docs/hidden-services.html.en&quot;&gt;distributed hash table&lt;/a&gt;, which, as the name suggests, is distributed. The hidden service domain is calculated from the public key of a private-public keypair. From what I can understand (and I may be very, very fucking wrong), the DHT basically holds the public key identifiers for each hidden service. Much like a keyserver in the PGP mechanism.&lt;/p&gt;
+
+&lt;p&gt;So, what I am proposing is an extension to the DHT protocol to not only allow publishing a hidden service descriptor to the DHT, but a secure revokation mechanism (based on the private key) that would allow a hidden service operator to “kill” a hidden service. Furthermore, a mechanism wherin prior to killing a HS, perhaps the ability to create new keys, sign with the old ones, pop it in the DHT, wait for a consensus mechanism to accept the new service, and then kill the old keys. This would, probably, be needlessly complex, however, so it would likely be best to just go with the revokation mechanism.&lt;/p&gt;
+
+&lt;p&gt;Uses for the revokation mechanism would include killing a HS post-compromise (by LE, Government, or malicious hackers) to defend the users of it from impersonation, amongst other things.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>2-Factor Auth for SSH using Twilio API and Python-PAM</title>
+   <link href="http://localhost:4000/python/pam/ssh/twilio/2014/10/21/Python-PAM-Twilio-2fa/"/>
+   <updated>2014-10-21T19:00:00+01:00</updated>
+   <id>http://localhost:4000/python/pam/ssh/twilio/2014/10/21/Python-PAM-Twilio-2fa</id>
+   <content type="html">&lt;p&gt;So, first real post here. Inspired by a &lt;a href=&quot;http://www.chokepoint.net/2013/12/simple-ssh-2-factor-pam-python-module.html&quot;&gt;post&lt;/a&gt; over at the &lt;a href=&quot;http://www.chokepoint.net/&quot;&gt;Chokepoint blog&lt;/a&gt;, and after recently doing some reading up on the &lt;a href=&quot;https://www.twilio.com&quot;&gt;Twilio&lt;/a&gt; &lt;a href=&quot;https://www.twilio.com/docs/python/install&quot;&gt;API&lt;/a&gt;, I decided it would be fun to expand their little script to use Twilio instead of &lt;a href=&quot;http://www.txtdrop.com&quot;&gt;TxtDrop&lt;/a&gt; for the simple reason that Twilio supports a lot more countries (including Ireland and the UK, where I currently reside) than TxtDrop, and so I could have an excuse to mess with Twilio, as I need to get to grips with its API for another project currently under development. I also wanted 2 factor auth for the server I use for IRC.&lt;/p&gt;
+
+&lt;p&gt;First off, we have to understand how the Python API for Twilio works for sending a SMS. Below is the example code from their documentation. Please note, I could not for the fucking life of me get this to work with a free Twilio account, and resorted to paying cash fucking money for one in the end.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Download the twilio-python library from http://twilio.com/docs/libraries&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;twilio.rest&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TwilioRestClient&lt;/span&gt;
+ 
+&lt;span class=&quot;c&quot;&gt;# Find these values at https://twilio.com/user/account&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;account_sid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ACXXXXXXXXXXXXXXXXX&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;auth_token&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;YYYYYYYYYYYYYYYYYY&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TwilioRestClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account_sid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;auth_token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ 
+&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;+12316851234&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;+15555555555&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                                     &lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello there!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;So, now we know how to send the text message. We modify this example and shove it into a function that accepts a destination phone number and the one time PIN we wish to send.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;send_sms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TwilioRestClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account_sid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;auth_token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;+15555555555&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Literally 2 lines of code. We can add some error handling or whatever later if we are so inclined. I am not, at this time, bothered. Now, to modify StampAuth to use our magical Twilio stuff, we simply ditch the SMS sending class, modify the function calls to the SMS sendy bit, and Bob’s yer uncle - it works.&lt;/p&gt;
+
+&lt;p&gt;Now, we have not yet looked at the PAM parts of the code… Simply because it took me a while to figure them out!&lt;/p&gt;
+
+&lt;p&gt;As you may notice, the “pam” module is never imported. This &lt;em&gt;seems&lt;/em&gt; to be because in the configuration, pam_python.so is explicitly called to handle the python script. This is not something I have seen before, so I decided against mucking about with it too much… I will eventually study python-pam in more detail in a future post when I figure it out a bit better!&lt;/p&gt;
+
+&lt;p&gt;Without further ado… Here is an example run of our little module :)&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ssh -ltest unsanitized
+Enter one &lt;span class=&quot;nb&quot;&gt;time &lt;/span&gt;PIN: 
+Password:
+
+Welcome to the twilight zone...
+&lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;@unsanitized:~&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;You can download the fork using Twilio on &lt;a href=&quot;https://github.com/0x27/twilightpam&quot;&gt;the github page&lt;/a&gt;&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Hello World!</title>
+   <link href="http://localhost:4000/2014/10/15/Hello-World/"/>
+   <updated>2014-10-15T18:54:34+01:00</updated>
+   <id>http://localhost:4000/2014/10/15/Hello-World</id>
+   <content type="html">&lt;p&gt;So I am attempting this blogging thing, using Jekyll. I guess this is the hello world post :)&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python2&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#coding: utf-8&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Hello world!&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I will be publishing most of my code over at my &lt;a href=&quot;https://github.com/0x27&quot;&gt;Github&lt;/a&gt;, so do check it out :)&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+
+</feed>

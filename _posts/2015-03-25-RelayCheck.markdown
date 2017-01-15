@@ -2,6 +2,11 @@
 layout: post
 title:  "RelayCheck Release"
 date:   2015-03-25 13:37:00
+categories:
+- tor
+- python
+- paramiko
+- projects
 ---
 This blog post is announcing the release of a tool I wrote called [RelayCheck][relaycheck], a simple utility for testing if ones [Tor][torproject] relays are up/down and for giving 
 them a good ole kill -HUP every now and then to keep it fresh.

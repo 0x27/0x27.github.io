@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Using the Python 'getpass' module &middot; 0x27.me
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/naringu.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/form.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="shortcut icon" href="./public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <link rel="alternate" type="application/rss+xml" title="Mozilla RSS" href="feed.category.xml">
+  </head>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48740529-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<body class="theme-6dd">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+      <img width="125" height="125" alt="A photo of me" src="/images/head.jpeg">
+    <p>Home of the 0x27 Finger Discount</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/categories/">Category Index</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/media/">Media</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/talks/">Talks</a>
+        
+      
+    
+
+    <a class="sidebar-nav-item" href="https://github.com/0x27">GitHub</a>
+    <a class="sidebar-nav-item" href="https://twitter.com/info_dox">Twitter</a>
+    <a class="sidebar-nav-item" href="https://www.linkedin.com/in/darren-martyn-8411b149">LinkedIn</a>
+    <span class="sidebar-nav-item">Version 2.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2017. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">0x27.me</a>
+            <small>Home of the 0x27 Finger Discount</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Using the Python 'getpass' module</h1>
+  <span class="post-date">15 Mar 2015</span>
+  <p>Clifford Sullivan (@cliffsull on twitter) recently asked how to go about safely accepting password input from an interactive program in python.</p>
+
+<p>As you may know, password inputs are generally “masked”, so the password is not echoed back to the screen. This is “kind of fucking important” as an attempt at defending against shoulder surfers and other evildoers.</p>
+
+<p>Anyway, in python, there is a module named “getpass” that serves this exact purpose. It is part of the python standard library, so no need to go pip installing it or anything just yet.</p>
+
+<p>I figured it might be useful to make note of it here just so you can see how trivial it is to safely accept user input, and perhaps write a demo app using python-paramiko showing how this might be used in practice.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#!/usr/bin/python2</span>
+<span class="s">"""
+Example use of "getpass" in python to accept user input
+of sensitive information such as passwords without echoing
+them back to the screen.
+
+Example Run:
+$ python test.py 
+Example Getpass Use Script
+Input Your Credentials (password will not be echoed)
+USER: this is a test username
+PASS: 
+Printing Your Credentials
+{+} USER: this is a test username
+{+} PASS: this is a test password
+$
+
+As you can see, the "password" input did not echo back
+my input. This is useful as it prevents against shoulder
+surfers and such evil creatures (well, assuming they dont
+just look at the bloody keys you are pressing!!)
+
+- infodox
+"""</span>
+<span class="kn">import</span> <span class="nn">getpass</span> <span class="c"># import getpass module</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">"Example Getpass Use Script"</span>
+    <span class="k">print</span> <span class="s">"Input Your Credentials (password will not be echoed)"</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"USER: "</span><span class="p">)</span> <span class="c"># doesnt matter if we echo username so use raw_input()</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="s">"PASS: "</span><span class="p">)</span> <span class="c"># use getpass to get passwd without echoing it back</span>
+    <span class="k">print</span> <span class="s">"Printing Your Credentials"</span>
+    <span class="k">print</span> <span class="s">"{+} USER: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="p">(</span><span class="n">username</span><span class="p">)</span> <span class="c"># print username</span>
+    <span class="k">print</span> <span class="s">"{+} PASS: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="p">(</span><span class="n">password</span><span class="p">)</span> <span class="c"># print the password</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span></code></pre></figure>
+
+<p>Now, to show use with Paramiko, say we want to write a program that logs into a remote host, checks uptime, and displays the uptime for you.</p>
+
+<p>In this example, we use raw_input to do this. raw_input is not a good idea for accepting passwords as it echoes back to the terminal, but it is fine for usernames.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#!/usr/bin/python2</span>
+<span class="kn">import</span> <span class="nn">paramiko</span>
+
+<span class="k">def</span> <span class="nf">run_ssh_cmd</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">passwd</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+    <span class="n">ssh</span> <span class="o">=</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">SSHClient</span><span class="p">()</span>
+    <span class="n">ssh</span><span class="o">.</span><span class="n">set_missing_host_key_policy</span><span class="p">(</span><span class="n">paramiko</span><span class="o">.</span><span class="n">AutoAddPolicy</span><span class="p">())</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">"(+) Connecting via SSH to </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+        <span class="n">ssh</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">passwd</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">AuthenticationException</span><span class="p">:</span>
+	<span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="s">"(-) Password or username incorrect!"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="s">"(-) Connection Failed perhaps?"</span><span class="p">)</span>
+    <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">ssh</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">output</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">address</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"host: "</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"user: "</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"pass: "</span><span class="p">)</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="s">"uptime"</span>
+    <span class="k">print</span> <span class="s">"(*) Running </span><span class="si">%</span><span class="s">s on </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">address</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">run_ssh_cmd</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">address</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="n">password</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="n">command</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">output</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span></code></pre></figure>
+
+<p>See? it echoes back to the terminal!</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>python ssh_exec_insecure.py
+host: 127.0.0.1
+user: packetforger
+pass: lolpassword
+<span class="o">(</span><span class="k">*</span><span class="o">)</span> Running uname on 127.0.0.1
+<span class="o">(</span>+<span class="o">)</span> Connecting via SSH to 127.0.0.1
+Linux
+<span class="gp">$ </span></code></pre></figure>
+
+<p>So instead, we use getpass.getpass to do this, and it is a far more safe way to accept the password.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#!/usr/bin/python2</span>
+<span class="kn">import</span> <span class="nn">paramiko</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+ 
+<span class="k">def</span> <span class="nf">run_ssh_cmd</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">passwd</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+    <span class="n">ssh</span> <span class="o">=</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">SSHClient</span><span class="p">()</span>
+    <span class="n">ssh</span><span class="o">.</span><span class="n">set_missing_host_key_policy</span><span class="p">(</span><span class="n">paramiko</span><span class="o">.</span><span class="n">AutoAddPolicy</span><span class="p">())</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">"(+) Connecting via SSH to </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+        <span class="n">ssh</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">passwd</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">AuthenticationException</span><span class="p">:</span>
+	<span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="s">"(-) Password or username incorrect!"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="s">"(-) Connection Failed perhaps?"</span><span class="p">)</span>
+    <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">ssh</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">output</span>
+ 
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">address</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"host: "</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"user: "</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="s">"pass: "</span><span class="p">)</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="s">"uptime"</span>
+    <span class="k">print</span> <span class="s">"(*) Running </span><span class="si">%</span><span class="s">s on </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">address</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">run_ssh_cmd</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">address</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="n">password</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="n">command</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">output</span>
+ 
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span></code></pre></figure>
+
+<p>As you can see, it does NOT echo back the password to the terminal!</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>python ssh_exec_secure.py
+host: 127.0.0.1
+user: packetforger
+pass:
+<span class="o">(</span><span class="k">*</span><span class="o">)</span> Running uname on 127.0.0.1
+<span class="o">(</span>+<span class="o">)</span> Connecting via SSH to 127.0.0.1
+Linux
+<span class="gp">$ </span></code></pre></figure>
+
+<p>Hopefully you will understand the point of all this, and use safer ways to accept user input into your applications :)</p>
+
+<p>Footnote: Currently importing old stuff from old blogs and stuff to one centralized location, which is why you may recognise this from elsewhere. Little identity crisis caused a fragmenting of online presence :P</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/security/iot/botnets/mirai/2016/10/24/On-The-Supposed-Cost-of-IoT-Botnets/">
+            On the supposed 'Cost' of IoT Botnets... 
+            <small>24 Oct 2016</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/vpn/privacy/security/2015/11/26/Practical-Exploitation-of-Portfail/">
+            Practical Exploitation of the VPN 'PortFail' IP Leak against Torrent Users.
+            <small>26 Nov 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/chemistry/science/writeups/2015/09/12/Synthesis-of-Nitroacetanilide-from-Acetanilide/">
+            Synthesis of p-Nitroacetanilide from Acetanilide
+            <small>12 Sep 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="comments">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = '';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = '';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+
+    <div align="center" class="footer">
+        <a href="https://github.com/ariestiyansyah/naringu" target="_blank" title="naringu">Naringu</a>  is designed by Rizky Ariestiyansyah<br />Copyright © 2017 <br>
+    </div>
+  </body>
+</html>
+

@@ -2,6 +2,11 @@
 layout: post
 title:  "Statement of Solidarity With Torproject Anti Harassment Policy."
 date:   2014-12-13 23:00:00
+categories:
+- tor
+- security
+- privacy
+- politics
 ---
 
 I normally ignore [drama on the internet][lamergate], as it is mostly pointless noise. However, sometimes, some bullshit goes down that you simply cannot ignore, but have no idea what to do about.

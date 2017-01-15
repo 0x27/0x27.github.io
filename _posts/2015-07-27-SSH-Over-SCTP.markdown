@@ -2,6 +2,12 @@
 layout: post
 title:  "SSH Over SCTP (With Socat)"
 date:   2015-07-27 13:37:00
+categories:
+- ssh
+- SCTP
+- privacy
+- security
+- evasion
 ---
 This is a quick post, kind of a reposting of a thing I pastebinned about a year ago that has served me REALLY well in evading stupid paywalls in airports and the likes. Also in evading a ridiculous firewall at the Uni I sometimes attend.
 

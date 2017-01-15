@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Writing (Basic) IRC Scripts in Python &middot; 0x27.me
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/naringu.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/form.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="shortcut icon" href="./public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <link rel="alternate" type="application/rss+xml" title="Mozilla RSS" href="feed.category.xml">
+  </head>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48740529-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<body class="theme-6dd">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+      <img width="125" height="125" alt="A photo of me" src="/images/head.jpeg">
+    <p>Home of the 0x27 Finger Discount</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/categories/">Category Index</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/media/">Media</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/talks/">Talks</a>
+        
+      
+    
+
+    <a class="sidebar-nav-item" href="https://github.com/0x27">GitHub</a>
+    <a class="sidebar-nav-item" href="https://twitter.com/info_dox">Twitter</a>
+    <a class="sidebar-nav-item" href="https://www.linkedin.com/in/darren-martyn-8411b149">LinkedIn</a>
+    <span class="sidebar-nav-item">Version 2.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2017. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">0x27.me</a>
+            <small>Home of the 0x27 Finger Discount</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Writing (Basic) IRC Scripts in Python</h1>
+  <span class="post-date">16 Mar 2015</span>
+  <p>This post is intended to be a gentle introduction into the fine and glorious art of writing IRC scripts (for irssi and hexchat, weechat is on the way) in the Python programming language. In this, you will be walked through, line by line, the “shakespeare.py” plugin for various IRC clients that I wrote out of 
+sheer boredom and a desire to insult people on IRC ye olde style.</p>
+
+<p>Hopefully, the following will be comprehensible to all readers, as I try explain every last bit of it so even the total beginner to Python or Computer Science III in general can get 
+the gist of it :)</p>
+
+<h2 id="general-stuff">General Stuff</h2>
+<p>First off, lets cover some of the general purpose boilerplate crap used in all the scripts.</p>
+
+<h1 id="so-arrayslists-and-how-do-they-work">So, arrays/lists, and how do they work…</h1>
+<p>Arrays, or lists, in Python, are really simple. Now, I am not a computer scientist, just a bored hacker. So I make no distinction between an array and a list as they look the same to me. Call me a pleb, but I give no fucks.</p>
+
+<p>You basically have an array like the following:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">lol</span> <span class="o">=</span> <span class="p">[</span><span class="s">'1'</span><span class="p">,</span> <span class="s">'2'</span><span class="p">,</span> <span class="s">'3'</span><span class="p">]</span></code></pre></figure>
+
+<p>Now, you can probably see clearly that we can address this in a nice fashion.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">lol</span> <span class="o">=</span> <span class="p">[</span><span class="s">'1'</span><span class="p">,</span> <span class="s">'2'</span><span class="p">,</span> <span class="s">'3'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">lol</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">lol</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">lol</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">lol</span>
+<span class="p">[</span><span class="s">'1'</span><span class="p">,</span> <span class="s">'2'</span><span class="p">,</span> <span class="s">'3'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> </code></pre></figure>
+
+<p>So we can select elements from our array and print them, without popping them from our array. We can also append items to our array, and remove them from our array, quite easily.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">lol</span> <span class="o">=</span> <span class="p">[</span><span class="s">'1'</span><span class="p">,</span> <span class="s">'2'</span><span class="p">,</span> <span class="s">'3'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">lol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">'4'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">lol</span>
+<span class="p">[</span><span class="s">'1'</span><span class="p">,</span> <span class="s">'2'</span><span class="p">,</span> <span class="s">'3'</span><span class="p">,</span> <span class="s">'4'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">lol</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="s">'2'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">lol</span>
+<span class="p">[</span><span class="s">'1'</span><span class="p">,</span> <span class="s">'3'</span><span class="p">,</span> <span class="s">'4'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> </code></pre></figure>
+
+<p>As you can see above, we appended ‘4’ to the array, and popped the first element (which was 2, rememeber, in programming we count from 0). This shows how simple it is to insert and delete items from an array or list. In our program, we make 3 arrays. Each including a bunch of “segments” for an insult.</p>
+
+<h1 id="random-selection">Random Selection…</h1>
+<p>In Python, we can easily do random selection with the module named “random”. to randomly select an item from an array, we will simply call the random.choice() function on the array which will return a random element from it.</p>
+
+<p>An example follows:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">lol</span> <span class="o">=</span> <span class="p">[</span><span class="s">'cat'</span><span class="p">,</span> <span class="s">'dog'</span><span class="p">,</span> <span class="s">'mouse'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">random</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">lol</span><span class="p">)</span>
+<span class="n">mouse</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">lol</span><span class="p">)</span>
+<span class="n">dog</span>
+<span class="o">&gt;&gt;&gt;</span> </code></pre></figure>
+
+<p>In our scripts, we use this random selection mechanism to select a random item from each array to construct our insult.</p>
+
+<h1 id="building-our-insult-from-the-arrays">Building our “Insult” from the arrays…</h1>
+<p>In order to build our insult, we need a random element from each of the arrays, so we can build a string to send.</p>
+
+<p>This is actually really, really, simple. See below.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">random</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s">'cat'</span><span class="p">,</span> <span class="s">'dog'</span><span class="p">,</span> <span class="s">'mouse'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s">'has'</span><span class="p">,</span> <span class="s">'is'</span><span class="p">,</span> <span class="s">'was'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">emotion</span> <span class="o">=</span> <span class="p">[</span><span class="s">'happy'</span><span class="p">,</span> <span class="s">'sad'</span><span class="p">,</span> <span class="s">'indifferent'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="s">"</span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">animals</span><span class="p">),</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">words</span><span class="p">),</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">emotion</span><span class="p">))</span>
+<span class="n">dog</span> <span class="ow">is</span> <span class="n">indifferent</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="s">"</span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">animals</span><span class="p">),</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">words</span><span class="p">),</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">emotion</span><span class="p">))</span>
+<span class="n">cat</span> <span class="n">was</span> <span class="n">happy</span>
+<span class="o">&gt;&gt;&gt;</span> </code></pre></figure>
+
+<h1 id="interesting-mathematics-on-how-many-insults-we-have">Interesting Mathematics on how many insults we have…</h1>
+<p>Now, you may note, that we have 50 insult pieces in each of the arrays. Now, unless I am mistaken (and email me if I am, maths is not my strong suit!), we can use the following maths to work out some shit.<br />
+P(n,r) = number of permutations<br />
+P(50,3) = number of permutations<br />
+50! / (50 - 3)! = number of permutations<br />
+Number of Permutations = 117600</p>
+
+<p>So hypothetically, we can fire off 117,600 unique insults!</p>
+
+<h2 id="irssi-specific-stuff">irssi specific stuff</h2>
+
+<h1 id="installing-irssi-python-for-development">Installing irssi-python for development</h1>
+<p>First off, don’t even bother. Just spin up an Arch box, install yaourt, and install it from the fucking AUR. I wasted an entire day trying to get it to build on 2 different Debian 
+boxes, and had absolutely no luck. The command to install irssi and irssi-python is as follows. You are more than welcome to try getting it working on Debian or whatever, but be 
+warned, you might find yourself jumping off the nearest tall structure before long, due to the sheer amount of fuckery involved.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">yaourt -S irssi-python irssi</code></pre></figure>
+
+<h1 id="how-irssi-scripts-accept-arguments">How irssi scripts accept arguments</h1>
+<p>IRSSI scripts are a bit fucking wierd in how they accept their arguments. They basically seem to accept them all as “data”.</p>
+
+<p>See the following:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">cmd_insult</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="n">witem</span><span class="p">):</span>
+<span class="c"># snip</span>
+    <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">server</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s">"MSG </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="p">(</span><span class="n">witem</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">data</span><span class="p">,</span> <span class="n">insult</span><span class="p">))</span>
+<span class="c"># snip</span></code></pre></figure>
+
+<p>Note how “data” is the first argument passed. This seems to be “all the arguments given to the command”, as “server” and “witem” are built in (the current server, and current window name). Data is effectively a string object of arguments that I strongly suspect parsing is left to the user.</p>
+
+<h1 id="sending-messages-to-channel">Sending messages to channel</h1>
+<p>In the above code snippet, you will have noticed the “server.command” function being called. This function sends a raw IRC command to the server. So to send a message to a channel, we must send “MSG <channel> <our message="">". This is rather simple, at least!</our></channel></p>
+
+<h1 id="binding-commands-to-functions-in-irssi">Binding commands to functions in irssi</h1>
+<p>The final bit of importance is how the command is bound in the script, and this is really fucking simple in IRSSI. You simply do the following at the end of your script.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">irssi</span><span class="o">.</span><span class="n">command_bind</span><span class="p">(</span><span class="s">'shakespeare'</span><span class="p">,</span> <span class="n">cmd_insult</span><span class="p">)</span></code></pre></figure>
+
+<p>this binds the command “shakespeare” to the function “cmd_insult”, and calls said function whenever the “shakespeare” command is called.</p>
+
+<h1 id="installing-and-using-the-script">Installing and using the script</h1>
+<p>To install, after nearly shooting yourself in the face during the compiling hell that is irssi-python, just move shakespeare.py to ~/.irssi/scripts and add “py load shakespeare” to your ~/.irssi/startup somewhere after “load python”.</p>
+
+<p>To use, just do /shakespeare to insult no one in particular (the open query window), or /shakespeare $nick to insult a specific user in the current channel.</p>
+
+<h2 id="hexchat-specific-stuff">Hexchat Specific Stuff</h2>
+
+<h1 id="installing-hexchat">Installing Hexchat</h1>
+<p>Hexchat comes with the Python support built in. So… You just install Hexchat, using yaourt/pacman on Arch (I prefer yaourt), or apt on Debian. Those of you on Fedora and other 
+“things I don’t use” are on your own here. As for the Mac users… I guess homebrew or something?</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">yaourt -S hexchat
+sudo apt-get install hexchat</code></pre></figure>
+
+<h1 id="module-information-and-suchlike-in-hexchat-scripts">Module information and suchlike in Hexchat scripts</h1>
+<p>Hexchat is fucking wierd. You have to intiialize your script with a load of boilerplate bollocks giving the name, version, and description of your script. Otherwise it may complain or something. Anyways, that bullshit looks like this.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">__module_name__</span> <span class="o">=</span> <span class="s">"shakespeare"</span>
+<span class="n">__module_version__</span> <span class="o">=</span> <span class="s">"1.0"</span>
+<span class="n">__module_description__</span> <span class="o">=</span> <span class="s">"Shakespearean Insult Generator"</span></code></pre></figure>
+
+<h1 id="how-hexchat-seems-to-accept-arguments">How Hexchat seems to accept arguments</h1>
+<p>Now, this is something I have not worked out, exactly. It kind of works. Sometimes. Sorta. Well, it takes arguments as “word”, similar to “data”, except, in what I think is kind of a neat feature, it treats them as an addressable list like sys.argv. So your initial command would be word[0], and first argument word[1], and so on. See the following example.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span> <span class="c"># we count from 0 in args, but from 1 here. fucked if I know.</span>
+    <span class="n">hexchat</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s">"MSG </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">insult</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">hexchat</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s">"MSG </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">insult</span><span class="p">))</span> <span class="c"># see we address arg[1] basically.</span></code></pre></figure>
+
+<h1 id="sending-messages-to-channel-1">Sending messages to channel</h1>
+<p>In the above code snippet, you will have noticed the “hexchat.command” function being called. This function sends a raw IRC command to the server. So to send a message to a channel, we must send “MSG <channel> <our message="">". This is rather simple, at least!</our></channel></p>
+
+<h1 id="binding-commands-to-functions-in-hexchat">Binding commands to functions in Hexchat</h1>
+<p>The final bit of importance is how the command is bound in the script, and this is really fucking simple in Hexchat as well. You simply do the following at the end of your script.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">hexchat</span><span class="o">.</span><span class="n">hook_command</span><span class="p">(</span><span class="s">"shakespeare"</span><span class="p">,</span> <span class="n">cmd_insult</span><span class="p">)</span></code></pre></figure>
+
+<p>this binds the command “shakespeare” to the function “cmd_insult”, and calls said function whenever the “shakespeare” command is called.</p>
+
+<h1 id="installing-and-using-the-script-1">Installing and using the script</h1>
+<p>Drop it into your “addons” directory in Hexchat, and load it with “/py load shakespeare.py” or add to autoload. Reasonably painless to make work, compared to the absolute motherfuckery that was configuring irssi-python.</p>
+
+<p>To use, just do /shakespeare to insult no one in particular (the open query window), or /shakespeare $nick to insult a specific user in the current channel.</p>
+
+<h2 id="source-codes-references">Source Codes, references.</h2>
+<p>You can find the source code for the <a href="https://github.com/0x27/irssi-shakespeare-insult">IRSSI Shakespearean Insult Script Here</a>, and source for the <a href="https://github.com/0x27/hexchat-shakespeare-insult">Hexchat Shakespearean Insult Script Here</a>. <a href="https://hexchat.github.io/">Hexchat</a> and <a href="http://www.irssi.org/">IRSSI</a> are available at their respective websites, and the <a href="https://github.com/mahmoudimus/irssi-python">irssi-python</a> plugin is also available. Documentation for the various clients and such are available on their respective websites.</p>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/security/iot/botnets/mirai/2016/10/24/On-The-Supposed-Cost-of-IoT-Botnets/">
+            On the supposed 'Cost' of IoT Botnets... 
+            <small>24 Oct 2016</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/vpn/privacy/security/2015/11/26/Practical-Exploitation-of-Portfail/">
+            Practical Exploitation of the VPN 'PortFail' IP Leak against Torrent Users.
+            <small>26 Nov 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/chemistry/science/writeups/2015/09/12/Synthesis-of-Nitroacetanilide-from-Acetanilide/">
+            Synthesis of p-Nitroacetanilide from Acetanilide
+            <small>12 Sep 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="comments">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = '';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = '';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+
+    <div align="center" class="footer">
+        <a href="https://github.com/ariestiyansyah/naringu" target="_blank" title="naringu">Naringu</a>  is designed by Rizky Ariestiyansyah<br />Copyright © 2017 <br>
+    </div>
+  </body>
+</html>
+
