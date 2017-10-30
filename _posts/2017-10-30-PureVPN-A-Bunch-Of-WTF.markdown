@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "PureVPN\: A Bunch of WTF"
+title:  "PureVPN - A Bunch of WTF"
 date:   2017-10-30 20:54:34
 categories:
 - VPN
