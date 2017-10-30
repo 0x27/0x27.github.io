@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "PureVPN Router Applet is a Security Nightmare"
+title:  "PureVPN: A Bunch of WTF"
 date:   2017-10-30 20:54:34
 categories:
 - VPN
