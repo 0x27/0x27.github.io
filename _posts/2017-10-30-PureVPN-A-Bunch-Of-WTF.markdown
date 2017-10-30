@@ -2,10 +2,6 @@
 layout: post
 title:  "PureVPN - A Bunch of WTF"
 date:   2017-10-30 20:54:34
-categories:
-- VPN
-- snitches
-- security
 ---
 
 So I decided I'd take a look at PureVPN quickly today, because they are a VPN provider who [claim no logs but snitch on their users to the feds](https://torrentfreak.com/purevpn-logs-helped-fbi-net-alleged-cyberstalker-171009/) and frankly, its a Thursday and I am bored. Sure, they snitched on a dude who was probably a shit human being and all, but really, if you are a VPN provider and you lie about having a "No Logs" policy... You are going to get whats coming.
